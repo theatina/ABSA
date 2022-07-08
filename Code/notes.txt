@@ -1,0 +1,10 @@
+dataframe columns:
+
+1. Review id
+2. Sentence id
+3. Category aspect
+4. Text
+5. Opinion target
+6. 
+
+Opinion Polarity (label)
