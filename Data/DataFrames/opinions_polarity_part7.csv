@@ -1,0 +1,13 @@
+polarity,review_id,sentence_id,text,op_category,op_target,op_OTE_offset,tokens
+positive,558423,558423:0,This place has the best Chinese style BBQ ribs in the city.,FOOD#QUALITY,BBQ ribs,"('38', '46')","['This', 'place', 'best', 'Chinese', 'style', 'BBQ', 'ribs', 'city']"
+positive,558423,558423:0,This place has the best Chinese style BBQ ribs in the city.,FOOD#STYLE_OPTIONS,BBQ ribs,"('38', '46')","['This', 'place', 'best', 'Chinese', 'style', 'BBQ', 'ribs', 'city']"
+positive,558423,558423:1,I also recommend the rice dishes or the different varieties of congee (rice porridge).,FOOD#QUALITY,rice dishes,"('21', '32')","['I', 'also', 'recommend', 'rice', 'dishes', 'different', 'varieties', 'congee', 'rice', 'porridge']"
+positive,558423,558423:1,I also recommend the rice dishes or the different varieties of congee (rice porridge).,FOOD#QUALITY,congee (rice porridge),"('63', '85')","['I', 'also', 'recommend', 'rice', 'dishes', 'different', 'varieties', 'congee', 'rice', 'porridge']"
+positive,558423,558423:2,It's great to go for a quick lunch either alone or with a friend.,RESTAURANT#MISCELLANEOUS,NULL,"('0', '0')","['great', 'go', 'quick', 'lunch', 'either', 'alone', 'friend']"
+negative,558423,558423:3,It's definately not a place to go if you want to impress someone.,RESTAURANT#MISCELLANEOUS,place,"('22', '27')","['definately', 'place', 'go', 'want', 'impress', 'someone']"
+positive,558423,558423:4,"However, if you want great food at a great price and don't mind the decor, you can't beat this place.",FOOD#QUALITY,food,"('27', '31')","['However', 'want', 'great', 'food', 'great', 'price', 'mind', 'decor', 'beat', 'place']"
+neutral,558423,558423:4,"However, if you want great food at a great price and don't mind the decor, you can't beat this place.",AMBIENCE#GENERAL,decor,"('68', '73')","['However', 'want', 'great', 'food', 'great', 'price', 'mind', 'decor', 'beat', 'place']"
+positive,558423,558423:4,"However, if you want great food at a great price and don't mind the decor, you can't beat this place.",FOOD#PRICES,food,"('27', '31')","['However', 'want', 'great', 'food', 'great', 'price', 'mind', 'decor', 'beat', 'place']"
+positive,558423,558423:5,Quick and friendly service.,SERVICE#GENERAL,service,"('19', '26')","['Quick', 'friendly', 'service']"
+positive,558423,558423:6,This is one of the best comfort food places in the city.,RESTAURANT#GENERAL,NULL,"('0', '0')","['This', 'one', 'best', 'comfort', 'food', 'places', 'city']"
+positive,558423,558423:7,It's somewhere you can eat and be happy.,RESTAURANT#GENERAL,NULL,"('0', '0')","['somewhere', 'eat', 'happy']"

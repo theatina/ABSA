@@ -1,0 +1,5 @@
+polarity,review_id,sentence_id,text,op_category,op_target,op_OTE_offset,tokens
+negative,475512,475512:2,"Well, this place is so Ghetto its not even funny.",AMBIENCE#GENERAL,place,"('11', '16')","['Well', 'place', 'Ghetto', 'even', 'funny']"
+negative,475512,475512:3,If you like your music blasted and the system isnt that great and if you want to pay at least 100 dollar bottle minimun then you'll love it here.,DRINKS#PRICES,bottle minimun,"('105', '119')","['If', 'like', 'music', 'blasted', 'system', 'isnt', 'great', 'want', 'pay', 'least', '100', 'dollar', 'bottle', 'minimun', 'love']"
+negative,475512,475512:3,If you like your music blasted and the system isnt that great and if you want to pay at least 100 dollar bottle minimun then you'll love it here.,AMBIENCE#GENERAL,music,"('17', '22')","['If', 'like', 'music', 'blasted', 'system', 'isnt', 'great', 'want', 'pay', 'least', '100', 'dollar', 'bottle', 'minimun', 'love']"
+negative,475512,475512:4,Would NEVER go back there.,RESTAURANT#GENERAL,NULL,"('0', '0')","['Would', 'NEVER', 'go', 'back']"

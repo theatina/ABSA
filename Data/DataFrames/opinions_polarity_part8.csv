@@ -1,0 +1,7 @@
+polarity,review_id,sentence_id,text,op_category,op_target,op_OTE_offset,tokens
+positive,759781,759781:0,"I went to Areo on a Sunday afternoon with four of my girlfriends, and spent three enjoyable hours there.",RESTAURANT#GENERAL,Areo,"('10', '14')","['I', 'went', 'Areo', 'Sunday', 'afternoon', 'four', 'girlfriends', 'spent', 'three', 'enjoyable', 'hours']"
+positive,759781,759781:2,"Most of the servers are very attentive, friendly and quite attractive.",SERVICE#GENERAL,servers,"('12', '19')","['Most', 'servers', 'attentive', 'friendly', 'quite', 'attractive']"
+positive,759781,759781:4,"The vibe is very relaxed and cozy, service was great and the food was excellent!",AMBIENCE#GENERAL,vibe,"('4', '8')","['The', 'vibe', 'relaxed', 'cozy', 'service', 'great', 'food', 'excellent']"
+positive,759781,759781:4,"The vibe is very relaxed and cozy, service was great and the food was excellent!",SERVICE#GENERAL,service,"('35', '42')","['The', 'vibe', 'relaxed', 'cozy', 'service', 'great', 'food', 'excellent']"
+positive,759781,759781:4,"The vibe is very relaxed and cozy, service was great and the food was excellent!",FOOD#QUALITY,food,"('61', '65')","['The', 'vibe', 'relaxed', 'cozy', 'service', 'great', 'food', 'excellent']"
+positive,759781,759781:5,Me and my girls will definitely go back.,RESTAURANT#GENERAL,NULL,"('0', '0')","['Me', 'girls', 'definitely', 'go', 'back']"

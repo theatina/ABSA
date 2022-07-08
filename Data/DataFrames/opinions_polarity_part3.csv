@@ -1,0 +1,8 @@
+polarity,review_id,sentence_id,text,op_category,op_target,op_OTE_offset,tokens
+positive,1349391,1349391:0,sometimes i get good food and ok service.,FOOD#QUALITY,food,"('21', '25')","['sometimes', 'get', 'good', 'food', 'ok', 'service']"
+neutral,1349391,1349391:0,sometimes i get good food and ok service.,SERVICE#GENERAL,service,"('33', '40')","['sometimes', 'get', 'good', 'food', 'ok', 'service']"
+negative,1349391,1349391:1,"sometimes i get bad food and bad service, sometimes i get good good and bad service.",FOOD#QUALITY,food,"('20', '24')","['sometimes', 'get', 'bad', 'food', 'bad', 'service', 'sometimes', 'get', 'good', 'good', 'bad', 'service']"
+negative,1349391,1349391:1,"sometimes i get bad food and bad service, sometimes i get good good and bad service.",SERVICE#GENERAL,service,"('33', '40')","['sometimes', 'get', 'bad', 'food', 'bad', 'service', 'sometimes', 'get', 'good', 'good', 'bad', 'service']"
+negative,1349391,1349391:1,"sometimes i get bad food and bad service, sometimes i get good good and bad service.",SERVICE#GENERAL,service,"('76', '83')","['sometimes', 'get', 'bad', 'food', 'bad', 'service', 'sometimes', 'get', 'good', 'good', 'bad', 'service']"
+positive,1349391,1349391:1,"sometimes i get bad food and bad service, sometimes i get good good and bad service.",FOOD#QUALITY,good,"('63', '67')","['sometimes', 'get', 'bad', 'food', 'bad', 'service', 'sometimes', 'get', 'good', 'good', 'bad', 'service']"
+negative,1349391,1349391:2,it is not consistent.,RESTAURANT#GENERAL,NULL,"('0', '0')",['consistent']

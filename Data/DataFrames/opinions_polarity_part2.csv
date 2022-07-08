@@ -1,0 +1,4 @@
+polarity,review_id,sentence_id,text,op_category,op_target,op_OTE_offset,tokens
+positive,1199292,1199292:0,"Pizza - the only pizza in NYC that should not have additional toppings - the crust tastes like the best, freshly baked bread!",FOOD#QUALITY,crust,"('77', '82')","['Pizza', 'pizza', 'NYC', 'additional', 'toppings', 'crust', 'tastes', 'like', 'best', 'freshly', 'baked', 'bread']"
+positive,1199292,1199292:0,"Pizza - the only pizza in NYC that should not have additional toppings - the crust tastes like the best, freshly baked bread!",FOOD#QUALITY,pizza,"('17', '22')","['Pizza', 'pizza', 'NYC', 'additional', 'toppings', 'crust', 'tastes', 'like', 'best', 'freshly', 'baked', 'bread']"
+positive,1199292,1199292:3,I take all my NYC guests to VT's.,RESTAURANT#MISCELLANEOUS,VT's,"('28', '32')","['I', 'take', 'NYC', 'guests']"

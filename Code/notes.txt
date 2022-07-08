@@ -1,10 +1,39 @@
-dataframe columns:
+________________________________________________________________________________
+# dataframe columns:
 
 1. Review id
 2. Sentence id
-3. Category aspect
-4. Text
+3. Text
+4. Opinion Category (aspect)
 5. Opinion target
-6. 
+6. Opinion Category offset ([from,to] / (from,to))
 
-Opinion Polarity (label)
+LABEL: Opinion Polarity 
+
+
+
+________________________________________________________________________________
+# Features
+
+1. text -> embedding ?! (can experiment with BERT hidden layer output, word2Vec/GloVe - έχω μια εργασία που κάνω ακριβώς sentence embeddings )
+2. offset ?
+3. lexical (LIWC/DAL feats)
+4. emotion (models that predict emotions)
+5. uni/bi grams ?
+6. syntactical feats (we can check https://arxiv.org/pdf/1911.00133v1.pdf + https://www.kaggle.com/datasets/ruchi798/stress-analysis-in-social-media )
+
+
+
+________________________________________________________________________________
+# Notes
+
+1. not all sentences have opinions !!
+2. some sentences have >1 opinions
+3. TARGET had a bug!!! in 24 opinions -> e.g. <Opinion target="&quot;salt encrusted shrimp&quot; appetizer" category="FOOD#STYLE_OPTIONS" polarity="negative" from="37" to="70"/> -> omit them (or deal with them later)
+
+
+
+
+________________________________________________________________________________
+# References
+

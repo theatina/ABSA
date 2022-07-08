@@ -1,4 +1,5 @@
 import os
+from requests import head
 from sympy import arg
 import sys
 import pandas as pd
@@ -21,20 +22,14 @@ if not os.path.exists(dataset_path):
 with open(dataset_path, "r", encoding="utf-8") as xml_reader:
     data = xml_reader.read()
 
-
 data_xml = BeautifulSoup(data, "xml")
-
 data_reviews = data_xml.find_all('Review')
-# data_text = data_xml.find_all('Review')
-# data_sentences = data_xml.find_all('Review')
-# data_review = data_xml.find_all('Review')
-rev_sentences = []
-for rev in data_reviews:
-   	rev_sentences.append(rev.find_all('sentence'))
-print(len(rev_sentences))
 
-sentence_list = [ [ re.findall(r'rid="(.*?)"', str(r))[0], re.findall(r'id="(.*?)"', str(s))[0].split(":")[-1], s.find_all('text')[0].get_text()  ] for r,sent_l in zip(data_reviews,rev_sentences) for s in sent_l]
+for i in range(10):
+
+    dataset_part = ".."+os.sep+"Data"+os.sep+"Parts"+os.sep+f"part{i+1}.xml"
+    with open(dataset_part, "w", encoding="utf-8") as xml_writer:
+        for r in data_reviews[ i*35:i*35+35 ]:
+            xml_writer.write(str(r))
 
 
-print(len(sentence_list))
-print(sentence_list[:5])

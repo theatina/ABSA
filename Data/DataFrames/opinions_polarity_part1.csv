@@ -1,0 +1,8 @@
+polarity,review_id,sentence_id,text,op_category,op_target,op_OTE_offset,tokens
+negative,1004293,1004293:0,"Judging from previous posts this used to be a good place, but not any longer.",RESTAURANT#GENERAL,place,"('51', '56')","['Judging', 'previous', 'posts', 'used', 'good', 'place', 'longer']"
+negative,1004293,1004293:1,"We, there were four of us, arrived at noon - the place was empty - and the staff acted like we were imposing on them and they were very rude.",SERVICE#GENERAL,staff,"('75', '80')","['We', 'four', 'us', 'arrived', 'noon', 'place', 'empty', 'staff', 'acted', 'like', 'imposing', 'rude']"
+negative,1004293,1004293:2,"They never brought us complimentary noodles, ignored repeated requests for sugar, and threw our dishes on the table.",SERVICE#GENERAL,NULL,"('0', '0')","['They', 'never', 'brought', 'us', 'complimentary', 'noodles', 'ignored', 'repeated', 'requests', 'sugar', 'threw', 'dishes', 'table']"
+negative,1004293,1004293:3,The food was lousy - too sweet or too salty and the portions tiny.,FOOD#QUALITY,food,"('4', '8')","['The', 'food', 'lousy', 'sweet', 'salty', 'portions', 'tiny']"
+negative,1004293,1004293:3,The food was lousy - too sweet or too salty and the portions tiny.,FOOD#STYLE_OPTIONS,portions,"('52', '60')","['The', 'food', 'lousy', 'sweet', 'salty', 'portions', 'tiny']"
+negative,1004293,1004293:4,"After all that, they complained to me about the small tip.",SERVICE#GENERAL,NULL,"('0', '0')","['After', 'complained', 'small', 'tip']"
+negative,1004293,1004293:5,Avoid this place!,RESTAURANT#GENERAL,place,"('11', '16')","['Avoid', 'place']"
