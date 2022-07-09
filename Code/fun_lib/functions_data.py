@@ -1,7 +1,4 @@
 import os
-from regex import F
-from requests import head
-from sympy import arg
 import sys
 import pandas as pd
 import re
@@ -9,16 +6,15 @@ import re
 from bs4 import BeautifulSoup
 
 from nltk.stem import PorterStemmer
-from nltk.tokenize import TweetTokenizer, sent_tokenize, word_tokenize
+from nltk.stem.wordnet import WordNetLemmatizer
+from nltk.tokenize import TweetTokenizer, sent_tokenize, word_tokenize, RegexpTokenizer
 from nltk.corpus import stopwords
 from nltk import pos_tag, FreqDist, word_tokenize
 from nltk.sentiment import SentimentIntensityAnalyzer
 from nltk.util import ngrams
 
 from sklearn.preprocessing import LabelEncoder
-
-import functions_training as funs_t
-
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 
 def tok_text(text):
 
@@ -142,7 +138,7 @@ def add_feat_ngrams(df,n):
 
     return df
 
-def stemming(df):
+def add_feat_stemming(df):
 
     ps = PorterStemmer()
     
@@ -155,6 +151,40 @@ def stemming(df):
         stemmed_text.append(stemmed_words)
 
     df["stemmed_text"]=stemmed_text
+    return df
+
+    
+def add_feat_lemmas(df):
+    tok_text_list = df["tokens"].values
+    
+    lem = WordNetLemmatizer()
+    lem_text_list=[]
+    for toks in tok_text_list:
+        l_words=[]
+        for w in toks:
+            l_words.append(lem.lemmatize(w))
+
+        lem_text_list.append(l_words) 
+
+    df["lem_text"]=lem_text_list
+
+    return df
+
+        
+def add_feat_CountVect(df):
+    #tokenizer to remove unwanted elements from out data like symbols and numbers
+    cv = CountVectorizer(lowercase=True,stop_words='english', ngram_range = (1,3), tokenizer = TweetTokenizer().tokenize)
+    text_cv = cv.fit_transform( df["text"])
+    df["countVect"] = [ row.toarray() for row in text_cv]
+
+    return df
+
+def add_feat_TfidfVect(df):
+    tf = TfidfVectorizer(lowercase=True,stop_words='english', ngram_range = (1,3), tokenizer = TweetTokenizer().tokenize)
+    text_tf = tf.fit_transform(df['text'])
+    df["tfidfVect"]= [ row.toarray() for row in text_tf]
+
+    return df
 
 
 def alpha_to_numerical(df,feat_name):
@@ -180,10 +210,19 @@ if __name__=="__main__":
     add_feat_ngrams(all_data_df,2)
     add_feat_ngrams(all_data_df,3)
     add_feat_ngrams(all_data_df,4)
-    alpha_to_numerical(all_data_df,"op_target")
+    add_feat_stemming(all_data_df)
+    add_feat_lemmas(all_data_df)
+    add_feat_CountVect(all_data_df)
+    add_feat_TfidfVect(all_data_df)
+
+    alpha_to_numerical(all_data_df,"polarity")
+
+    
+    # print(all_data_df["countVect"])
+    # print(all_data_df["tfidfVect"])
  
-    labels = all_data_df["polarity"].values
-    all_data_df.pop("polarity")
+    # labels = all_data_df["polarity"].values
+    # all_data_df.pop("polarity")
 
     file_name = f"allFeats"
     data_df_filepath = os.path.join(save_dir,f"opinions_polarity_{file_name}.csv")

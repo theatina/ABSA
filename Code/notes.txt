@@ -15,12 +15,16 @@ LABEL: Opinion Polarity
 ________________________________________________________________________________
 # Features
 
-1. text -> embedding ?! (can experiment with BERT hidden layer output, word2Vec/GloVe - έχω μια εργασία που κάνω ακριβώς sentence embeddings )
-2. offset ?
+1. text embedding ?! (can experiment with BERT hidden layer output, word2Vec/GloVe - έχω μια εργασία που κάνω ακριβώς sentence embeddings )
+2. offset
 3. lexical (LIWC/DAL feats)
-4. emotion (models that predict emotions)
-5. uni/bi grams ?
+4. emotion (models that predict emotions with scores)
+5. bi/tri grams
 6. syntactical feats (we can check https://arxiv.org/pdf/1911.00133v1.pdf + https://www.kaggle.com/datasets/ruchi798/stress-analysis-in-social-media )
+7. stemmed text
+8. POS tags
+9. named entities
+10. tfidf
 
 
 
