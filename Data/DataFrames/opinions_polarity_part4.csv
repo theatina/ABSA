@@ -1,11 +1,757 @@
 polarity,review_id,sentence_id,text,op_category,op_target,op_OTE_offset,tokens
-positive,1506491,1506491:0,"I have known about this secret for the last 13 years, Emilio(the Godfather) has continued to serve food and wine for the gods at mortal prices.",FOOD#QUALITY,food,"('99', '103')","['I', 'known', 'secret', 'last', '13', 'years', 'Emilio', 'Godfather', 'continued', 'serve', 'food', 'wine', 'gods', 'mortal', 'prices']"
-positive,1506491,1506491:0,"I have known about this secret for the last 13 years, Emilio(the Godfather) has continued to serve food and wine for the gods at mortal prices.",DRINKS#QUALITY,wine,"('108', '112')","['I', 'known', 'secret', 'last', '13', 'years', 'Emilio', 'Godfather', 'continued', 'serve', 'food', 'wine', 'gods', 'mortal', 'prices']"
-positive,1506491,1506491:0,"I have known about this secret for the last 13 years, Emilio(the Godfather) has continued to serve food and wine for the gods at mortal prices.",FOOD#PRICES,food,"('99', '103')","['I', 'known', 'secret', 'last', '13', 'years', 'Emilio', 'Godfather', 'continued', 'serve', 'food', 'wine', 'gods', 'mortal', 'prices']"
-positive,1506491,1506491:0,"I have known about this secret for the last 13 years, Emilio(the Godfather) has continued to serve food and wine for the gods at mortal prices.",DRINKS#PRICES,wine,"('108', '112')","['I', 'known', 'secret', 'last', '13', 'years', 'Emilio', 'Godfather', 'continued', 'serve', 'food', 'wine', 'gods', 'mortal', 'prices']"
-positive,1506491,1506491:1,"If you go, try the marinara/arrabiatta sauce, the mozzarella en Carozza is mmmmmmmm..... everything is just delicious.",FOOD#QUALITY,marinara/arrabiatta sauce,"('19', '44')","['If', 'go', 'try', 'marinara', 'arrabiatta', 'sauce', 'mozzarella', 'en', 'Carozza', 'mmmmmmmm', 'everything', 'delicious']"
-positive,1506491,1506491:1,"If you go, try the marinara/arrabiatta sauce, the mozzarella en Carozza is mmmmmmmm..... everything is just delicious.",FOOD#QUALITY,mozzarella en Carozza,"('50', '71')","['If', 'go', 'try', 'marinara', 'arrabiatta', 'sauce', 'mozzarella', 'en', 'Carozza', 'mmmmmmmm', 'everything', 'delicious']"
-positive,1506491,1506491:1,"If you go, try the marinara/arrabiatta sauce, the mozzarella en Carozza is mmmmmmmm..... everything is just delicious.",FOOD#QUALITY,NULL,"('0', '0')","['If', 'go', 'try', 'marinara', 'arrabiatta', 'sauce', 'mozzarella', 'en', 'Carozza', 'mmmmmmmm', 'everything', 'delicious']"
-positive,1506491,1506491:2,Check out the secret back room.,AMBIENCE#GENERAL,back room,"('21', '30')","['Check', 'secret', 'back', 'room']"
-positive,1506491,1506491:4,I pray it stays open forever.,RESTAURANT#GENERAL,NULL,"('0', '0')","['I', 'pray', 'stays', 'open', 'forever']"
-positive,1506491,1506491:5,Thank You Emilio.,RESTAURANT#GENERAL,Emilio,"('10', '16')","['Thank', 'You', 'Emilio']"
+positive,1506491,1506491:0,"
+     I have known about this secret for the last 13 years, Emilio(the Godfather) has continued to serve food and wine for the gods at mortal prices.
+    ",FOOD#QUALITY,food,"('99', '103')","['I', 'known', 'secret', 'last', '13', 'years', 'Emilio', 'Godfather', 'continued', 'serve', 'food', 'wine', 'gods', 'mortal', 'prices']"
+positive,1506491,1506491:0,"
+     I have known about this secret for the last 13 years, Emilio(the Godfather) has continued to serve food and wine for the gods at mortal prices.
+    ",DRINKS#QUALITY,wine,"('108', '112')","['I', 'known', 'secret', 'last', '13', 'years', 'Emilio', 'Godfather', 'continued', 'serve', 'food', 'wine', 'gods', 'mortal', 'prices']"
+positive,1506491,1506491:0,"
+     I have known about this secret for the last 13 years, Emilio(the Godfather) has continued to serve food and wine for the gods at mortal prices.
+    ",FOOD#PRICES,food,"('99', '103')","['I', 'known', 'secret', 'last', '13', 'years', 'Emilio', 'Godfather', 'continued', 'serve', 'food', 'wine', 'gods', 'mortal', 'prices']"
+positive,1506491,1506491:0,"
+     I have known about this secret for the last 13 years, Emilio(the Godfather) has continued to serve food and wine for the gods at mortal prices.
+    ",DRINKS#PRICES,wine,"('108', '112')","['I', 'known', 'secret', 'last', '13', 'years', 'Emilio', 'Godfather', 'continued', 'serve', 'food', 'wine', 'gods', 'mortal', 'prices']"
+positive,1506491,1506491:1,"
+     If you go, try the marinara/arrabiatta sauce, the mozzarella en Carozza is mmmmmmmm..... everything is just delicious.
+    ",FOOD#QUALITY,marinara/arrabiatta sauce,"('19', '44')","['If', 'go', 'try', 'marinara', 'arrabiatta', 'sauce', 'mozzarella', 'en', 'Carozza', 'mmmmmmmm', 'everything', 'delicious']"
+positive,1506491,1506491:1,"
+     If you go, try the marinara/arrabiatta sauce, the mozzarella en Carozza is mmmmmmmm..... everything is just delicious.
+    ",FOOD#QUALITY,mozzarella en Carozza,"('50', '71')","['If', 'go', 'try', 'marinara', 'arrabiatta', 'sauce', 'mozzarella', 'en', 'Carozza', 'mmmmmmmm', 'everything', 'delicious']"
+positive,1506491,1506491:1,"
+     If you go, try the marinara/arrabiatta sauce, the mozzarella en Carozza is mmmmmmmm..... everything is just delicious.
+    ",FOOD#QUALITY,NULL,"('0', '0')","['If', 'go', 'try', 'marinara', 'arrabiatta', 'sauce', 'mozzarella', 'en', 'Carozza', 'mmmmmmmm', 'everything', 'delicious']"
+positive,1506491,1506491:2,"
+     Check out the secret back room.
+    ",AMBIENCE#GENERAL,back room,"('21', '30')","['Check', 'secret', 'back', 'room']"
+positive,1506491,1506491:4,"
+     I pray it stays open forever.
+    ",RESTAURANT#GENERAL,NULL,"('0', '0')","['I', 'pray', 'stays', 'open', 'forever']"
+positive,1506491,1506491:5,"
+     Thank You Emilio.
+    ",RESTAURANT#GENERAL,Emilio,"('10', '16')","['Thank', 'You', 'Emilio']"
+positive,1538149,1538149:0,"
+     I found the food, service and value exceptional everytime I have been there.
+    ",FOOD#QUALITY,food,"('12', '16')","['I', 'found', 'food', 'service', 'value', 'exceptional', 'everytime', 'I']"
+positive,1538149,1538149:0,"
+     I found the food, service and value exceptional everytime I have been there.
+    ",SERVICE#GENERAL,service,"('18', '25')","['I', 'found', 'food', 'service', 'value', 'exceptional', 'everytime', 'I']"
+positive,1538149,1538149:0,"
+     I found the food, service and value exceptional everytime I have been there.
+    ",RESTAURANT#PRICES,NULL,"('0', '0')","['I', 'found', 'food', 'service', 'value', 'exceptional', 'everytime', 'I']"
+positive,1538149,1538149:1,"
+     The food was authentic.
+    ",FOOD#QUALITY,food,"('4', '8')","['The', 'food', 'authentic']"
+positive,1538149,1538149:2,"
+     I felt as though I were eating in Paris.
+    ",FOOD#QUALITY,NULL,"('0', '0')","['I', 'felt', 'though', 'I', 'eating', 'Paris']"
+positive,1538149,1538149:3,"
+     The service was excellent - friendly and attentive.
+    ",SERVICE#GENERAL,service,"('4', '11')","['The', 'service', 'excellent', 'friendly', 'attentive']"
+positive,1538149,1538149:4,"
+     The prices are wonderfully low.
+    ",RESTAURANT#PRICES,NULL,"('0', '0')","['The', 'prices', 'wonderfully', 'low']"
+positive,1538149,1538149:5,"
+     Very good wine choices.
+    ",DRINKS#STYLE_OPTIONS,wine choices,"('10', '22')","['Very', 'good', 'wine', 'choices']"
+positive,1543345,1543345:1,"
+     Who has room for Cheesesticks with the best pizza in NYC!
+    ",FOOD#QUALITY,pizza,"('44', '49')","['Who', 'room', 'Cheesesticks', 'best', 'pizza', 'NYC']"
+positive,1543345,1543345:2,"
+     Get the pepperoni - YUM - and a family style salad.
+    ",FOOD#QUALITY,pepperoni,"('8', '17')","['Get', 'pepperoni', 'YUM', 'family', 'style', 'salad']"
+positive,1543345,1543345:2,"
+     Get the pepperoni - YUM - and a family style salad.
+    ",FOOD#QUALITY,family style salad,"('32', '50')","['Get', 'pepperoni', 'YUM', 'family', 'style', 'salad']"
+positive,1543345,1543345:3,"
+     Great staff.
+    ",SERVICE#GENERAL,staff,"('6', '11')","['Great', 'staff']"
+positive,1543345,1543345:4,"
+     Always great service!
+    ",SERVICE#GENERAL,service,"('13', '20')","['Always', 'great', 'service']"
+positive,1543345,1543345:5,"
+     I go twice a month!
+    ",RESTAURANT#GENERAL,NULL,"('0', '0')","['I', 'go', 'twice', 'month']"
+positive,1543345,1543345:6,"
+     Fantastic!
+    ",RESTAURANT#GENERAL,NULL,"('0', '0')",['Fantastic']
+positive,1561259,1561259:0,"
+     The food is good, I can't lie.
+    ",FOOD#QUALITY,food,"('4', '8')","['The', 'food', 'good', 'I', 'lie']"
+negative,1561259,1561259:1,"
+     But the staff was so horrible to us.
+    ",SERVICE#GENERAL,staff,"('8', '13')","['But', 'staff', 'horrible', 'us']"
+negative,1561259,1561259:2,"
+     The hostess and the waitress were incredibly rude and did everything they could to rush us out.
+    ",SERVICE#GENERAL,hostess,"('4', '11')","['The', 'hostess', 'waitress', 'incredibly', 'rude', 'everything', 'could', 'rush', 'us']"
+negative,1561259,1561259:2,"
+     The hostess and the waitress were incredibly rude and did everything they could to rush us out.
+    ",SERVICE#GENERAL,waitress,"('20', '28')","['The', 'hostess', 'waitress', 'incredibly', 'rude', 'everything', 'could', 'rush', 'us']"
+negative,1561259,1561259:3,"
+     We were planning to get dessert but the waitress basically through the bill at us before we had a chance to order.
+    ",SERVICE#GENERAL,waitress,"('40', '48')","['We', 'planning', 'get', 'dessert', 'waitress', 'basically', 'bill', 'us', 'chance', 'order']"
+negative,1561259,1561259:4,"
+     This place is pricey, and yes, the food is worth it; but the service makes you feel like you should be paying a quater of the price.
+    ",RESTAURANT#PRICES,place,"('5', '10')","['This', 'place', 'pricey', 'yes', 'food', 'worth', 'service', 'makes', 'feel', 'like', 'paying', 'quater', 'price']"
+positive,1561259,1561259:4,"
+     This place is pricey, and yes, the food is worth it; but the service makes you feel like you should be paying a quater of the price.
+    ",FOOD#QUALITY,food,"('35', '39')","['This', 'place', 'pricey', 'yes', 'food', 'worth', 'service', 'makes', 'feel', 'like', 'paying', 'quater', 'price']"
+negative,1561259,1561259:4,"
+     This place is pricey, and yes, the food is worth it; but the service makes you feel like you should be paying a quater of the price.
+    ",SERVICE#GENERAL,service,"('61', '68')","['This', 'place', 'pricey', 'yes', 'food', 'worth', 'service', 'makes', 'feel', 'like', 'paying', 'quater', 'price']"
+negative,1561259,1561259:5,"
+     Save yourself the time and trouble and skip this one!
+    ",RESTAURANT#GENERAL,NULL,"('0', '0')","['Save', 'time', 'trouble', 'skip', 'one']"
+neutral,1572027,1572027:1,"
+     Amma is nothing special.
+    ",RESTAURANT#GENERAL,Amma,"('0', '4')","['Amma', 'nothing', 'special']"
+negative,1572027,1572027:3,"
+     I ate here a week ago and found most dishes average at best and too expensive.
+    ",FOOD#QUALITY,dishes,"('37', '43')","['I', 'ate', 'week', 'ago', 'found', 'dishes', 'average', 'best', 'expensive']"
+negative,1572027,1572027:3,"
+     I ate here a week ago and found most dishes average at best and too expensive.
+    ",FOOD#PRICES,dishes,"('37', '43')","['I', 'ate', 'week', 'ago', 'found', 'dishes', 'average', 'best', 'expensive']"
+negative,1572027,1572027:4,"
+     Will not be back.
+    ",RESTAURANT#GENERAL,NULL,"('0', '0')","['Will', 'back']"
+negative,1572033,1572033:0,"
+     Don't dine at Tamarind for the vegetarian dishes, they are simply not up to par with the non-veg selections.
+    ",FOOD#QUALITY,vegetarian dishes,"('31', '48')","['dine', 'Tamarind', 'vegetarian', 'dishes', 'simply', 'par', 'selections']"
+positive,1572033,1572033:0,"
+     Don't dine at Tamarind for the vegetarian dishes, they are simply not up to par with the non-veg selections.
+    ",FOOD#QUALITY,non-veg selections,"('89', '107')","['dine', 'Tamarind', 'vegetarian', 'dishes', 'simply', 'par', 'selections']"
+positive,1572033,1572033:1,"
+     Decor is nice though service can be spotty.
+    ",AMBIENCE#GENERAL,Decor,"('0', '5')","['Decor', 'nice', 'though', 'service', 'spotty']"
+negative,1572033,1572033:1,"
+     Decor is nice though service can be spotty.
+    ",SERVICE#GENERAL,service,"('21', '28')","['Decor', 'nice', 'though', 'service', 'spotty']"
+neutral,1572033,1572033:2,"
+     This place is always packed.
+    ",RESTAURANT#MISCELLANEOUS,place,"('5', '10')","['This', 'place', 'always', 'packed']"
+positive,1572033,1572033:4,"
+     Most importantly, food is excellent.
+    ",FOOD#QUALITY,food,"('18', '22')","['Most', 'importantly', 'food', 'excellent']"
+positive,1572033,1572033:5,"
+     Try the sea bass.
+    ",FOOD#QUALITY,sea bass,"('8', '16')","['Try', 'sea', 'bass']"
+positive,1572033,1572033:6,"
+     Highly recommended.
+    ",RESTAURANT#GENERAL,NULL,"('0', '0')","['Highly', 'recommended']"
+positive,1573534,1573534:0,"
+     First of all Dal Bukhara Rocks.
+    ",FOOD#QUALITY,Dal Bukhara,"('13', '24')","['First', 'Dal', 'Bukhara', 'Rocks']"
+positive,1573534,1573534:3,"
+     I am happy i did the food was awsome.
+    ",FOOD#QUALITY,food,"('21', '25')","['I', 'happy', 'food', 'awsome']"
+positive,1573534,1573534:4,"
+     JUST AWSOME.
+    ",FOOD#QUALITY,NULL,"('0', '0')","['JUST', 'AWSOME']"
+positive,1573534,1573534:5,"
+     and yes Dal Bukhara is so dam good and so are all the kababs.
+    ",FOOD#QUALITY,kababs,"('54', '60')","['yes', 'Dal', 'Bukhara', 'dam', 'good', 'kababs']"
+positive,1573534,1573534:5,"
+     and yes Dal Bukhara is so dam good and so are all the kababs.
+    ",FOOD#QUALITY,Dal Bukhara,"('8', '19')","['yes', 'Dal', 'Bukhara', 'dam', 'good', 'kababs']"
+positive,1573534,1573534:7,"
+     but overall i give it a 10
+    ",RESTAURANT#GENERAL,NULL,"('0', '0')","['overall', 'give', '10']"
+positive,1573534,1573534:8,"
+     10
+    ",RESTAURANT#GENERAL,NULL,"('0', '0')",['10']
+negative,1577714,1577714:1,"
+     Haru on Park S is simply disgusting.
+    ",RESTAURANT#GENERAL,Haru on Park S,"('0', '14')","['Haru', 'Park', 'S', 'simply', 'disgusting']"
+negative,1577714,1577714:2,"
+     The fish was not fresh and the rice tasted old and stale.
+    ",FOOD#QUALITY,fish,"('4', '8')","['The', 'fish', 'fresh', 'rice', 'tasted', 'old', 'stale']"
+negative,1577714,1577714:2,"
+     The fish was not fresh and the rice tasted old and stale.
+    ",FOOD#QUALITY,rice,"('31', '35')","['The', 'fish', 'fresh', 'rice', 'tasted', 'old', 'stale']"
+negative,1577714,1577714:3,"
+     Quite frankly, this is some of the worst sushi I have ever tried.
+    ",FOOD#QUALITY,sushi,"('41', '46')","['Quite', 'frankly', 'worst', 'sushi', 'I', 'ever', 'tried']"
+negative,1577714,1577714:4,"
+     Will never be back.
+    ",RESTAURANT#GENERAL,NULL,"('0', '0')","['Will', 'never', 'back']"
+negative,1586174,1586174:0,"
+     honestly the worst sushi my husband and i had in our entire lives.
+    ",FOOD#QUALITY,sushi,"('19', '24')","['honestly', 'worst', 'sushi', 'husband', 'entire', 'lives']"
+negative,1586174,1586174:2,"
+     not sure why this restaurant would be rated that highly.
+    ",RESTAURANT#GENERAL,restaurant,"('18', '28')","['sure', 'restaurant', 'would', 'rated', 'highly']"
+negative,1586174,1586174:3,"
+     the all-u-can-eat sushi is definitely in very poor quality.
+    ",FOOD#QUALITY,all-u-can-eat sushi,"('4', '23')","['sushi', 'definitely', 'poor', 'quality']"
+negative,1586174,1586174:4,"
+     limited menu, no-so-fresh ingredients, thinly-sliced fish, fall-apart rice.
+    ",FOOD#STYLE_OPTIONS,menu,"('8', '12')","['limited', 'menu', 'ingredients', 'fish', 'rice']"
+negative,1586174,1586174:4,"
+     limited menu, no-so-fresh ingredients, thinly-sliced fish, fall-apart rice.
+    ",FOOD#QUALITY,ingredients,"('26', '37')","['limited', 'menu', 'ingredients', 'fish', 'rice']"
+negative,1586174,1586174:4,"
+     limited menu, no-so-fresh ingredients, thinly-sliced fish, fall-apart rice.
+    ",FOOD#STYLE_OPTIONS,fish,"('53', '57')","['limited', 'menu', 'ingredients', 'fish', 'rice']"
+negative,1586174,1586174:4,"
+     limited menu, no-so-fresh ingredients, thinly-sliced fish, fall-apart rice.
+    ",FOOD#STYLE_OPTIONS,rice,"('70', '74')","['limited', 'menu', 'ingredients', 'fish', 'rice']"
+negative,1586174,1586174:5,"
+     the only things u could really taste are the very salty soy sauce (even its low sodium), the vinegar-soaked rice, and the scallion on top of the fish.
+    ",FOOD#QUALITY,soy sauce,"('56', '65')","['things', 'u', 'could', 'really', 'taste', 'salty', 'soy', 'sauce', 'even', 'low', 'sodium', 'rice', 'scallion', 'top', 'fish']"
+negative,1586174,1586174:5,"
+     the only things u could really taste are the very salty soy sauce (even its low sodium), the vinegar-soaked rice, and the scallion on top of the fish.
+    ",FOOD#QUALITY,rice,"('108', '112')","['things', 'u', 'could', 'really', 'taste', 'salty', 'soy', 'sauce', 'even', 'low', 'sodium', 'rice', 'scallion', 'top', 'fish']"
+positive,1586174,1586174:6,"
+     the waitstaffs are nice though.
+    ",SERVICE#GENERAL,waitstaffs,"('4', '14')","['waitstaffs', 'nice', 'though']"
+negative,1586174,1586174:7,"
+     wont come back again for sure!
+    ",RESTAURANT#GENERAL,NULL,"('0', '0')","['wont', 'come', 'back', 'sure']"
+negative,1603698,1603698:0,"
+     I have been to Roth's twice and both times were very disappointing.
+    ",RESTAURANT#GENERAL,Roth's,"('15', '21')","['I', 'twice', 'times', 'disappointing']"
+negative,1603698,1603698:2,"
+     Both times I was extremely dissappointed by the service, which was boarderline rude.
+    ",SERVICE#GENERAL,service,"('48', '55')","['Both', 'times', 'I', 'extremely', 'dissappointed', 'service', 'boarderline', 'rude']"
+negative,1603698,1603698:3,"
+     They wouldnt even let me finish my glass of wine before offering another.
+    ",SERVICE#GENERAL,NULL,"('0', '0')","['They', 'wouldnt', 'even', 'let', 'finish', 'glass', 'wine', 'offering', 'another']"
+negative,1603698,1603698:4,"
+     Much of the time it seems like they do not care about you.
+    ",SERVICE#GENERAL,NULL,"('0', '0')","['Much', 'time', 'seems', 'like', 'care']"
+negative,1603698,1603698:5,"
+     The dinner was ok, nothing I would have again.
+    ",FOOD#QUALITY,dinner,"('4', '10')","['The', 'dinner', 'ok', 'nothing', 'I', 'would']"
+negative,1603698,1603698:6,"
+     I had their eggs benedict for brunch, which were the worst in my entire life, I tried removing the hollondaise sauce completely that was how failed it was.
+    ",FOOD#QUALITY,eggs benedict,"('12', '25')","['I', 'eggs', 'benedict', 'brunch', 'worst', 'entire', 'life', 'I', 'tried', 'removing', 'hollondaise', 'sauce', 'completely', 'failed']"
+positive,1606837,1606837:0,"
+     This was a great surprise.
+    ",RESTAURANT#GENERAL,NULL,"('0', '0')","['This', 'great', 'surprise']"
+positive,1606837,1606837:1,"
+     With the theater 2 blocks away we had a delicious meal in a beautiful room.
+    ",FOOD#QUALITY,meal,"('50', '54')","['With', 'theater', '2', 'blocks', 'away', 'delicious', 'meal', 'beautiful', 'room']"
+positive,1606837,1606837:1,"
+     With the theater 2 blocks away we had a delicious meal in a beautiful room.
+    ",AMBIENCE#GENERAL,room,"('70', '74')","['With', 'theater', '2', 'blocks', 'away', 'delicious', 'meal', 'beautiful', 'room']"
+positive,1606837,1606837:1,"
+     With the theater 2 blocks away we had a delicious meal in a beautiful room.
+    ",LOCATION#GENERAL,NULL,"('0', '0')","['With', 'theater', '2', 'blocks', 'away', 'delicious', 'meal', 'beautiful', 'room']"
+positive,1606837,1606837:2,"
+     The service was attentive.
+    ",SERVICE#GENERAL,service,"('4', '11')","['The', 'service', 'attentive']"
+positive,1606837,1606837:3,"
+     I look forward to eating here again
+    ",RESTAURANT#GENERAL,NULL,"('0', '0')","['I', 'look', 'forward', 'eating']"
+positive,1609375,1609375:0,"
+     Planet Thai is great!
+    ",RESTAURANT#GENERAL,Planet Thai,"('0', '11')","['Planet', 'Thai', 'great']"
+positive,1609375,1609375:1,"
+     We love the food, drinks, and atmosphere!
+    ",FOOD#QUALITY,food,"('12', '16')","['We', 'love', 'food', 'drinks', 'atmosphere']"
+positive,1609375,1609375:1,"
+     We love the food, drinks, and atmosphere!
+    ",DRINKS#QUALITY,drinks,"('18', '24')","['We', 'love', 'food', 'drinks', 'atmosphere']"
+positive,1609375,1609375:1,"
+     We love the food, drinks, and atmosphere!
+    ",AMBIENCE#GENERAL,atmosphere,"('30', '40')","['We', 'love', 'food', 'drinks', 'atmosphere']"
+negative,1609375,1609375:2,"
+     The svc can be a bit rude at times, esp if you have big group, but overall the restaurant is a must!
+    ",SERVICE#GENERAL,svc,"('4', '7')","['The', 'svc', 'bit', 'rude', 'times', 'esp', 'big', 'group', 'overall', 'restaurant', 'must']"
+positive,1609375,1609375:2,"
+     The svc can be a bit rude at times, esp if you have big group, but overall the restaurant is a must!
+    ",RESTAURANT#GENERAL,restaurant,"('79', '89')","['The', 'svc', 'bit', 'rude', 'times', 'esp', 'big', 'group', 'overall', 'restaurant', 'must']"
+positive,1609375,1609375:3,"
+     Try the Pad Thai, it's fabulous and their prices are so cheap!
+    ",FOOD#QUALITY,Pad Thai,"('8', '16')","['Try', 'Pad', 'Thai', 'fabulous', 'prices', 'cheap']"
+positive,1609375,1609375:3,"
+     Try the Pad Thai, it's fabulous and their prices are so cheap!
+    ",RESTAURANT#PRICES,NULL,"('0', '0')","['Try', 'Pad', 'Thai', 'fabulous', 'prices', 'cheap']"
+positive,1609375,1609375:4,"
+     Just because it's cheap does NOT mean the portions are small or the food is nasty, IT IS GREAT!
+    ",FOOD#STYLE_OPTIONS,portions,"('42', '50')","['Just', 'cheap', 'NOT', 'mean', 'portions', 'small', 'food', 'nasty', 'IT', 'IS', 'GREAT']"
+positive,1609375,1609375:4,"
+     Just because it's cheap does NOT mean the portions are small or the food is nasty, IT IS GREAT!
+    ",FOOD#QUALITY,food,"('68', '72')","['Just', 'cheap', 'NOT', 'mean', 'portions', 'small', 'food', 'nasty', 'IT', 'IS', 'GREAT']"
+positive,1609375,1609375:4,"
+     Just because it's cheap does NOT mean the portions are small or the food is nasty, IT IS GREAT!
+    ",RESTAURANT#PRICES,NULL,"('0', '0')","['Just', 'cheap', 'NOT', 'mean', 'portions', 'small', 'food', 'nasty', 'IT', 'IS', 'GREAT']"
+negative,1611489,1611489:0,"
+     They forgot a sandwich, didn't include plastic forks, and didn't include pita with the hummus platter.
+    ",SERVICE#GENERAL,NULL,"('0', '0')","['They', 'forgot', 'sandwich', 'include', 'plastic', 'forks', 'include', 'pita', 'hummus', 'platter']"
+negative,1611489,1611489:1,"
+     Also, the sandwiches (nearing $7) didn't come with anything like chips or a side.
+    ",FOOD#STYLE_OPTIONS,sandwiches,"('10', '20')","['Also', 'sandwiches', 'nearing', '7', 'come', 'anything', 'like', 'chips', 'side']"
+negative,1611489,1611489:1,"
+     Also, the sandwiches (nearing $7) didn't come with anything like chips or a side.
+    ",FOOD#PRICES,sandwiches,"('10', '20')","['Also', 'sandwiches', 'nearing', '7', 'come', 'anything', 'like', 'chips', 'side']"
+negative,1611489,1611489:2,"
+     Overall, not worth the money.
+    ",RESTAURANT#GENERAL,NULL,"('0', '0')","['Overall', 'worth', 'money']"
+negative,1611489,1611489:2,"
+     Overall, not worth the money.
+    ",RESTAURANT#PRICES,NULL,"('0', '0')","['Overall', 'worth', 'money']"
+positive,1611489,1611489:3,"
+     Eating in, the atmosphere saves it, but at your desk, it's a very disappointing experience.
+    ",AMBIENCE#GENERAL,atmosphere,"('15', '25')","['Eating', 'atmosphere', 'saves', 'desk', 'disappointing', 'experience']"
+negative,1611489,1611489:3,"
+     Eating in, the atmosphere saves it, but at your desk, it's a very disappointing experience.
+    ",RESTAURANT#GENERAL,NULL,"('0', '0')","['Eating', 'atmosphere', 'saves', 'desk', 'disappointing', 'experience']"
+positive,1615322,1615322:1,"
+     Chennai Garden is my favorite Indian restaurant in the city.
+    ",RESTAURANT#GENERAL,Chennai Garden,"('0', '14')","['Chennai', 'Garden', 'favorite', 'Indian', 'restaurant', 'city']"
+positive,1615322,1615322:2,"
+     They have authentic Indian at amazin prices.
+    ",FOOD#QUALITY,Indian,"('20', '26')","['They', 'authentic', 'Indian', 'amazin', 'prices']"
+positive,1615322,1615322:2,"
+     They have authentic Indian at amazin prices.
+    ",FOOD#PRICES,Indian,"('20', '26')","['They', 'authentic', 'Indian', 'amazin', 'prices']"
+negative,1615322,1615322:3,"
+     This restaurant is VEGETARIAN; there are NO MEAT dishes whatsoever.
+    ",FOOD#STYLE_OPTIONS,dishes,"('49', '55')","['This', 'restaurant', 'VEGETARIAN', 'NO', 'MEAT', 'dishes', 'whatsoever']"
+negative,1615322,1615322:4,"
+     The seats are uncomfortable if you are sitting against the wall on wooden benches.
+    ",AMBIENCE#GENERAL,seats,"('4', '9')","['The', 'seats', 'uncomfortable', 'sitting', 'wall', 'wooden', 'benches']"
+negative,1615322,1615322:5,"
+     It's a rather cramped and busy restaurant and it closes early.
+    ",RESTAURANT#MISCELLANEOUS,restaurant,"('31', '41')","['rather', 'cramped', 'busy', 'restaurant', 'closes', 'early']"
+negative,1615322,1615322:5,"
+     It's a rather cramped and busy restaurant and it closes early.
+    ",AMBIENCE#GENERAL,restaurant,"('31', '41')","['rather', 'cramped', 'busy', 'restaurant', 'closes', 'early']"
+positive,1623276,1623276:0,"
+     Patroon features a nice cigar bar and has great staff.
+    ",AMBIENCE#GENERAL,cigar bar,"('24', '33')","['Patroon', 'features', 'nice', 'cigar', 'bar', 'great', 'staff']"
+positive,1623276,1623276:0,"
+     Patroon features a nice cigar bar and has great staff.
+    ",SERVICE#GENERAL,staff,"('48', '53')","['Patroon', 'features', 'nice', 'cigar', 'bar', 'great', 'staff']"
+positive,1623276,1623276:1,"
+     The food is tasty and portion sizes are appropriate.
+    ",FOOD#QUALITY,food,"('4', '8')","['The', 'food', 'tasty', 'portion', 'sizes', 'appropriate']"
+positive,1623276,1623276:1,"
+     The food is tasty and portion sizes are appropriate.
+    ",FOOD#STYLE_OPTIONS,portion sizes,"('22', '35')","['The', 'food', 'tasty', 'portion', 'sizes', 'appropriate']"
+positive,1623276,1623276:2,"
+     This is a nice restaurant if you are looking for a good place to host an intimate dinner meeting with business associates.
+    ",RESTAURANT#MISCELLANEOUS,restaurant,"('15', '25')","['This', 'nice', 'restaurant', 'looking', 'good', 'place', 'host', 'intimate', 'dinner', 'meeting', 'business', 'associates']"
+negative,1623276,1623276:3,"
+     Not a great place for family or general dining.
+    ",RESTAURANT#MISCELLANEOUS,place,"('12', '17')","['Not', 'great', 'place', 'family', 'general', 'dining']"
+positive,1626564,1626564:0,"
+     LLOOVVE THIS PLACE.
+    ",RESTAURANT#GENERAL,PLACE,"('13', '18')","['LLOOVVE', 'THIS', 'PLACE']"
+positive,1626564,1626564:1,"
+     Food is excellent.
+    ",FOOD#QUALITY,Food,"('0', '4')","['Food', 'excellent']"
+positive,1626564,1626564:2,"
+     Fish is so very fresh.
+    ",FOOD#QUALITY,Fish,"('0', '4')","['Fish', 'fresh']"
+positive,1626564,1626564:3,"
+     Waitstaff are very friendly.
+    ",SERVICE#GENERAL,Waitstaff,"('0', '9')","['Waitstaff', 'friendly']"
+positive,1626564,1626564:4,"
+     Love YUKA.
+    ",RESTAURANT#GENERAL,YUKA,"('5', '9')","['Love', 'YUKA']"
+positive,1632445,1632445:0,"
+     Mermaid Inn is an overall good restaurant with really good seafood.
+    ",FOOD#QUALITY,seafood,"('59', '66')","['Mermaid', 'Inn', 'overall', 'good', 'restaurant', 'really', 'good', 'seafood']"
+positive,1632445,1632445:0,"
+     Mermaid Inn is an overall good restaurant with really good seafood.
+    ",RESTAURANT#GENERAL,Mermaid Inn,"('0', '11')","['Mermaid', 'Inn', 'overall', 'good', 'restaurant', 'really', 'good', 'seafood']"
+negative,1632445,1632445:1,"
+     The menu is limited but almost all of the dishes are excellent.
+    ",FOOD#STYLE_OPTIONS,menu,"('4', '8')","['The', 'menu', 'limited', 'almost', 'dishes', 'excellent']"
+positive,1632445,1632445:1,"
+     The menu is limited but almost all of the dishes are excellent.
+    ",FOOD#QUALITY,dishes,"('42', '48')","['The', 'menu', 'limited', 'almost', 'dishes', 'excellent']"
+positive,1632445,1632445:2,"
+     The lobster sandwich is good and the spaghetti with Scallops and Shrimp is great.
+    ",FOOD#QUALITY,lobster sandwich,"('4', '20')","['The', 'lobster', 'sandwich', 'good', 'spaghetti', 'Scallops', 'Shrimp', 'great']"
+positive,1632445,1632445:2,"
+     The lobster sandwich is good and the spaghetti with Scallops and Shrimp is great.
+    ",FOOD#QUALITY,spaghetti with Scallops and Shrimp,"('37', '71')","['The', 'lobster', 'sandwich', 'good', 'spaghetti', 'Scallops', 'Shrimp', 'great']"
+positive,1632445,1632445:3,"
+     The service is good and ambience is good for a date or group outing.
+    ",SERVICE#GENERAL,service,"('4', '11')","['The', 'service', 'good', 'ambience', 'good', 'date', 'group', 'outing']"
+positive,1632445,1632445:3,"
+     The service is good and ambience is good for a date or group outing.
+    ",AMBIENCE#GENERAL,ambience,"('24', '32')","['The', 'service', 'good', 'ambience', 'good', 'date', 'group', 'outing']"
+negative,1632445,1632445:4,"
+     The only fallback on this restaurant is the prices.
+    ",RESTAURANT#PRICES,restaurant,"('26', '36')","['The', 'fallback', 'restaurant', 'prices']"
+positive,1632445,1632445:5,"
+     Even though its good seafood, the prices are too high.
+    ",FOOD#QUALITY,seafood,"('21', '28')","['Even', 'though', 'good', 'seafood', 'prices', 'high']"
+negative,1632445,1632445:5,"
+     Even though its good seafood, the prices are too high.
+    ",FOOD#PRICES,seafood,"('21', '28')","['Even', 'though', 'good', 'seafood', 'prices', 'high']"
+positive,1632445,1632445:6,"
+     The lobster sandwich is $24 and although it was good it was not nearly enough to warrant that price.
+    ",FOOD#QUALITY,lobster sandwich,"('4', '20')","['The', 'lobster', 'sandwich', '24', 'although', 'good', 'nearly', 'enough', 'warrant', 'price']"
+negative,1632445,1632445:6,"
+     The lobster sandwich is $24 and although it was good it was not nearly enough to warrant that price.
+    ",FOOD#STYLE_OPTIONS,lobster sandwich,"('4', '20')","['The', 'lobster', 'sandwich', '24', 'although', 'good', 'nearly', 'enough', 'warrant', 'price']"
+negative,1632445,1632445:6,"
+     The lobster sandwich is $24 and although it was good it was not nearly enough to warrant that price.
+    ",FOOD#PRICES,lobster sandwich,"('4', '20')","['The', 'lobster', 'sandwich', '24', 'although', 'good', 'nearly', 'enough', 'warrant', 'price']"
+positive,1632929,1632929:2,"
+     We were very pleasantly surprised.
+    ",RESTAURANT#GENERAL,NULL,"('0', '0')","['We', 'pleasantly', 'surprised']"
+positive,1632929,1632929:3,"
+     The food was delicious (I had a halibut special, my husband had steak), and the service was top-notch.
+    ",FOOD#QUALITY,food,"('4', '8')","['The', 'food', 'delicious', 'I', 'halibut', 'special', 'husband', 'steak', 'service']"
+positive,1632929,1632929:3,"
+     The food was delicious (I had a halibut special, my husband had steak), and the service was top-notch.
+    ",FOOD#QUALITY,halibut special,"('32', '47')","['The', 'food', 'delicious', 'I', 'halibut', 'special', 'husband', 'steak', 'service']"
+positive,1632929,1632929:3,"
+     The food was delicious (I had a halibut special, my husband had steak), and the service was top-notch.
+    ",FOOD#QUALITY,steak,"('64', '69')","['The', 'food', 'delicious', 'I', 'halibut', 'special', 'husband', 'steak', 'service']"
+positive,1632929,1632929:3,"
+     The food was delicious (I had a halibut special, my husband had steak), and the service was top-notch.
+    ",SERVICE#GENERAL,service,"('80', '87')","['The', 'food', 'delicious', 'I', 'halibut', 'special', 'husband', 'steak', 'service']"
+positive,1632929,1632929:4,"
+     When my dessert came, there was a candle in it - not because anyone asked for one - but because the waiter must have seen me opening my birthday card and gift, and said he knew it was a special occassion of some sort.
+    ",SERVICE#GENERAL,waiter,"('100', '106')","['When', 'dessert', 'came', 'candle', 'anyone', 'asked', 'one', 'waiter', 'must', 'seen', 'opening', 'birthday', 'card', 'gift', 'said', 'knew', 'special', 'occassion', 'sort']"
+positive,1632929,1632929:5,"
+     Truly the mark of an attentive waiter.
+    ",SERVICE#GENERAL,waiter,"('31', '37')","['Truly', 'mark', 'attentive', 'waiter']"
+positive,1632929,1632929:6,"
+     I highly recommend the restaurant based on our experience last night.
+    ",RESTAURANT#GENERAL,restaurant,"('23', '33')","['I', 'highly', 'recommend', 'restaurant', 'based', 'experience', 'last', 'night']"
+negative,1642666,1642666:0,"
+     We ate at this Thai place following the reviews but very unhappy with the foods.
+    ",FOOD#QUALITY,foods,"('74', '79')","['We', 'ate', 'Thai', 'place', 'following', 'reviews', 'unhappy', 'foods']"
+negative,1642666,1642666:1,"
+     We thought that this place is using too much of MSG cooking in the foods.
+    ",FOOD#QUALITY,foods,"('67', '72')","['We', 'thought', 'place', 'using', 'much', 'MSG', 'cooking', 'foods']"
+negative,1642666,1642666:3,"
+     They don't concern much of customer's health, just want to make money.
+    ",RESTAURANT#GENERAL,NULL,"('0', '0')","['They', 'concern', 'much', 'health', 'want', 'make', 'money']"
+negative,1642666,1642666:4,"
+     please don't fool us.
+    ",RESTAURANT#GENERAL,NULL,"('0', '0')","['please', 'fool', 'us']"
+positive,1649025,1649025:1,"
+     I recommend the jelly fish, drunken chicken and the soupy dumplings, certainly the stir fry blue crab.
+    ",FOOD#QUALITY,jelly fish,"('16', '26')","['I', 'recommend', 'jelly', 'fish', 'drunken', 'chicken', 'soupy', 'dumplings', 'certainly', 'stir', 'fry', 'blue', 'crab']"
+positive,1649025,1649025:1,"
+     I recommend the jelly fish, drunken chicken and the soupy dumplings, certainly the stir fry blue crab.
+    ",FOOD#QUALITY,drunken chicken,"('28', '43')","['I', 'recommend', 'jelly', 'fish', 'drunken', 'chicken', 'soupy', 'dumplings', 'certainly', 'stir', 'fry', 'blue', 'crab']"
+positive,1649025,1649025:1,"
+     I recommend the jelly fish, drunken chicken and the soupy dumplings, certainly the stir fry blue crab.
+    ",FOOD#QUALITY,soupy dumplings,"('52', '67')","['I', 'recommend', 'jelly', 'fish', 'drunken', 'chicken', 'soupy', 'dumplings', 'certainly', 'stir', 'fry', 'blue', 'crab']"
+positive,1649025,1649025:1,"
+     I recommend the jelly fish, drunken chicken and the soupy dumplings, certainly the stir fry blue crab.
+    ",FOOD#QUALITY,stir fry blue crab,"('83', '101')","['I', 'recommend', 'jelly', 'fish', 'drunken', 'chicken', 'soupy', 'dumplings', 'certainly', 'stir', 'fry', 'blue', 'crab']"
+positive,1649025,1649025:2,"
+     The food is so cheap and the waiters are nice.
+    ",FOOD#PRICES,food,"('4', '8')","['The', 'food', 'cheap', 'waiters', 'nice']"
+positive,1649025,1649025:2,"
+     The food is so cheap and the waiters are nice.
+    ",SERVICE#GENERAL,waiters,"('29', '36')","['The', 'food', 'cheap', 'waiters', 'nice']"
+neutral,1649025,1649025:3,"
+     Of course, it is crowded but who cares.
+    ",RESTAURANT#MISCELLANEOUS,NULL,"('0', '0')","['Of', 'course', 'crowded', 'cares']"
+positive,1649025,1649025:4,"
+     Authentic Shanghai style and I cannot recommend a better Shanghai place in New York.
+    ",RESTAURANT#MISCELLANEOUS,NULL,"('0', '0')","['Authentic', 'Shanghai', 'style', 'I', 'cannot', 'recommend', 'better', 'Shanghai', 'place', 'New', 'York']"
+positive,1655504,1655504:0,"
+     Have frequented 'ino for several years and the food remains excellent.
+    ",FOOD#QUALITY,food,"('47', '51')","['Have', 'frequented', 'ino', 'several', 'years', 'food', 'remains', 'excellent']"
+positive,1655504,1655504:1,"
+     Cheese plate is a varied delight and great bargain at $10.
+    ",FOOD#QUALITY,Cheese plate,"('0', '12')","['Cheese', 'plate', 'varied', 'delight', 'great', 'bargain', '10']"
+positive,1655504,1655504:1,"
+     Cheese plate is a varied delight and great bargain at $10.
+    ",FOOD#STYLE_OPTIONS,Cheese plate,"('0', '12')","['Cheese', 'plate', 'varied', 'delight', 'great', 'bargain', '10']"
+positive,1655504,1655504:1,"
+     Cheese plate is a varied delight and great bargain at $10.
+    ",FOOD#PRICES,Cheese plate,"('0', '12')","['Cheese', 'plate', 'varied', 'delight', 'great', 'bargain', '10']"
+positive,1655504,1655504:2,"
+     The large selection of bruschettas, paninis, tramezzinis keep the palate from stagnating.
+    ",FOOD#STYLE_OPTIONS,bruschettas,"('23', '34')","['The', 'large', 'selection', 'bruschettas', 'paninis', 'tramezzinis', 'keep', 'palate', 'stagnating']"
+positive,1655504,1655504:2,"
+     The large selection of bruschettas, paninis, tramezzinis keep the palate from stagnating.
+    ",FOOD#STYLE_OPTIONS,paninis,"('36', '43')","['The', 'large', 'selection', 'bruschettas', 'paninis', 'tramezzinis', 'keep', 'palate', 'stagnating']"
+positive,1655504,1655504:2,"
+     The large selection of bruschettas, paninis, tramezzinis keep the palate from stagnating.
+    ",FOOD#STYLE_OPTIONS,tramezzinis,"('45', '56')","['The', 'large', 'selection', 'bruschettas', 'paninis', 'tramezzinis', 'keep', 'palate', 'stagnating']"
+positive,1655504,1655504:3,"
+     (The asparagus, truffle oil, parmesan bruschetta is a winner!)
+    ",FOOD#QUALITY,"asparagus, truffle oil, parmesan bruschetta","('5', '48')","['The', 'asparagus', 'truffle', 'oil', 'parmesan', 'bruschetta', 'winner']"
+positive,1655504,1655504:4,"
+     Wine list is extensive without being over-priced.
+    ",DRINKS#STYLE_OPTIONS,Wine list,"('0', '9')","['Wine', 'list', 'extensive', 'without']"
+positive,1655504,1655504:4,"
+     Wine list is extensive without being over-priced.
+    ",DRINKS#PRICES,Wine list,"('0', '9')","['Wine', 'list', 'extensive', 'without']"
+positive,1655504,1655504:5,"
+     Be sure to try the seasonal, and always delicious, specials.
+    ",FOOD#QUALITY,specials,"('51', '59')","['Be', 'sure', 'try', 'seasonal', 'always', 'delicious', 'specials']"
+positive,1655504,1655504:6,"
+     Definitely a neighborhood favorite.
+    ",RESTAURANT#GENERAL,NULL,"('0', '0')","['Definitely', 'neighborhood', 'favorite']"
+positive,1655521,1655521:0,"
+     I loved this place!!
+    ",RESTAURANT#GENERAL,place,"('13', '18')","['I', 'loved', 'place']"
+positive,1655521,1655521:1,"
+     I almost hesititate to write a review because the atmosphere was so great and I would hate for it too become to crowded.
+    ",AMBIENCE#GENERAL,atmosphere,"('50', '60')","['I', 'almost', 'hesititate', 'write', 'review', 'atmosphere', 'great', 'I', 'would', 'hate', 'become', 'crowded']"
+positive,1655521,1655521:2,"
+     The food was very good, a great deal, and the place its self was great.
+    ",FOOD#QUALITY,food,"('4', '8')","['The', 'food', 'good', 'great', 'deal', 'place', 'self', 'great']"
+positive,1655521,1655521:2,"
+     The food was very good, a great deal, and the place its self was great.
+    ",FOOD#PRICES,food,"('4', '8')","['The', 'food', 'good', 'great', 'deal', 'place', 'self', 'great']"
+positive,1655521,1655521:2,"
+     The food was very good, a great deal, and the place its self was great.
+    ",AMBIENCE#GENERAL,place,"('46', '51')","['The', 'food', 'good', 'great', 'deal', 'place', 'self', 'great']"
+positive,1655521,1655521:3,"
+     The wait staff is very freindly, they make it feel like you're eating in a freindly little european town.
+    ",SERVICE#GENERAL,wait staff,"('4', '14')","['The', 'wait', 'staff', 'freindly', 'make', 'feel', 'like', 'eating', 'freindly', 'little', 'european', 'town']"
+negative,1660047,1660047:0,"
+     I like Cafe Noir dont get me wrong, it is jsut that the people who work there are evil and incompetent!!
+    ",SERVICE#GENERAL,people,"('56', '62')","['I', 'like', 'Cafe', 'Noir', 'dont', 'get', 'wrong', 'jsut', 'people', 'work', 'evil', 'incompetent']"
+positive,1660047,1660047:0,"
+     I like Cafe Noir dont get me wrong, it is jsut that the people who work there are evil and incompetent!!
+    ",RESTAURANT#GENERAL,Cafe Noir,"('7', '16')","['I', 'like', 'Cafe', 'Noir', 'dont', 'get', 'wrong', 'jsut', 'people', 'work', 'evil', 'incompetent']"
+negative,1660047,1660047:1,"
+     The service was terrible, we had to wait for everything and ask several of different people for the same thing before we were allowed to be served.
+    ",SERVICE#GENERAL,service,"('4', '11')","['The', 'service', 'terrible', 'wait', 'everything', 'ask', 'several', 'different', 'people', 'thing', 'allowed', 'served']"
+negative,1660047,1660047:2,"
+     The waitress, seems to be more concerned of looking good than actually waitressing.
+    ",SERVICE#GENERAL,waitress,"('4', '12')","['The', 'waitress', 'seems', 'concerned', 'looking', 'good', 'actually', 'waitressing']"
+negative,1660047,1660047:3,"
+     After dinner the manager grabbed my boyfriend, asked him: Where are you from...maybe you dont know how things work in America...and in the end stormed away almost teareyed yelling that tips are the only thing they survive on.
+    ",SERVICE#GENERAL,manager,"('17', '24')","['After', 'dinner', 'manager', 'grabbed', 'boyfriend', 'asked', 'Where', 'maybe', 'dont', 'know', 'things', 'work', 'America', 'end', 'stormed', 'away', 'almost', 'teareyed', 'yelling', 'tips', 'thing', 'survive']"
+negative,1660047,1660047:4,"
+     We did tip, I guess the model/waitress just wanted more and complained to the manager.
+    ",SERVICE#GENERAL,waitress,"('30', '38')","['We', 'tip', 'I', 'guess', 'model', 'waitress', 'wanted', 'complained', 'manager']"
+negative,1660047,1660047:5,"
+     The whole set up is truly unprofessional and I wish Cafe Noir would get some good staff, because despite the current one this is a great place.
+    ",SERVICE#GENERAL,staff,"('82', '87')","['The', 'whole', 'set', 'truly', 'unprofessional', 'I', 'wish', 'Cafe', 'Noir', 'would', 'get', 'good', 'staff', 'despite', 'current', 'one', 'great', 'place']"
+positive,1660047,1660047:5,"
+     The whole set up is truly unprofessional and I wish Cafe Noir would get some good staff, because despite the current one this is a great place.
+    ",RESTAURANT#GENERAL,Cafe Noir,"('52', '61')","['The', 'whole', 'set', 'truly', 'unprofessional', 'I', 'wish', 'Cafe', 'Noir', 'would', 'get', 'good', 'staff', 'despite', 'current', 'one', 'great', 'place']"
+positive,1661043,1661043:0,"
+     Pizza here is consistently good.
+    ",FOOD#QUALITY,Pizza,"('0', '5')","['Pizza', 'consistently', 'good']"
+positive,1661043,1661043:1,"
+     Salads are a delicious way to begin the meal.
+    ",FOOD#QUALITY,Salads,"('0', '6')","['Salads', 'delicious', 'way', 'begin', 'meal']"
+negative,1661043,1661043:2,"
+     You should pass on the calamari.
+    ",FOOD#QUALITY,calamari,"('23', '31')","['You', 'pass', 'calamari']"
+negative,1661043,1661043:3,"
+     It is thick and slightly soggy.
+    ",FOOD#QUALITY,NULL,"('0', '0')","['It', 'thick', 'slightly', 'soggy']"
+positive,1661043,1661043:4,"
+     Decor is charming.
+    ",AMBIENCE#GENERAL,Decor,"('0', '5')","['Decor', 'charming']"
+neutral,1661043,1661043:5,"
+     Service is average.
+    ",SERVICE#GENERAL,Service,"('0', '7')","['Service', 'average']"
+positive,1661757,1661757:0,"
+     What a great place.
+    ",RESTAURANT#GENERAL,place,"('13', '18')","['What', 'great', 'place']"
+positive,1661757,1661757:2,"
+     The ambience was so fun, and the prices were great, on top of the fact that the food was really tasty.
+    ",AMBIENCE#GENERAL,ambience,"('4', '12')","['The', 'ambience', 'fun', 'prices', 'great', 'top', 'fact', 'food', 'really', 'tasty']"
+positive,1661757,1661757:2,"
+     The ambience was so fun, and the prices were great, on top of the fact that the food was really tasty.
+    ",RESTAURANT#PRICES,NULL,"('0', '0')","['The', 'ambience', 'fun', 'prices', 'great', 'top', 'fact', 'food', 'really', 'tasty']"
+positive,1661757,1661757:2,"
+     The ambience was so fun, and the prices were great, on top of the fact that the food was really tasty.
+    ",FOOD#QUALITY,food,"('80', '84')","['The', 'ambience', 'fun', 'prices', 'great', 'top', 'fact', 'food', 'really', 'tasty']"
+neutral,1661757,1661757:3,"
+     I wasn't thrilled to have to wait on line for thirty minutes, but I guess that's the price you pay for a popular place.
+    ",SERVICE#GENERAL,NULL,"('0', '0')","['I', 'thrilled', 'wait', 'line', 'thirty', 'minutes', 'I', 'guess', 'price', 'pay', 'popular', 'place']"
+positive,1661757,1661757:4,"
+     I would definitely recommend SEA if you like thai cuisine!
+    ",FOOD#QUALITY,thai cuisine,"('45', '57')","['I', 'would', 'definitely', 'recommend', 'SEA', 'like', 'thai', 'cuisine']"
+negative,1662726,1662726:0,"
+     I was here a few weeks back and we had the worst customer service experience at a restaurant ever.
+    ",SERVICE#GENERAL,customer service,"('49', '65')","['I', 'weeks', 'back', 'worst', 'customer', 'service', 'experience', 'restaurant', 'ever']"
+negative,1662726,1662726:1,"
+     A gentleman, maybe the manager, came to our table, and without so much as a smile or greeting asked for our order.
+    ",SERVICE#GENERAL,gentleman,"('2', '11')","['A', 'gentleman', 'maybe', 'manager', 'came', 'table', 'without', 'much', 'smile', 'greeting', 'asked', 'order']"
+negative,1662726,1662726:2,"
+     When asked about how a certain dish was prepared in comparison to a similar at other thai restaurants, he replied this is not Mcdonald's, every place makes things differently
+    ",SERVICE#GENERAL,NULL,"('0', '0')","['When', 'asked', 'certain', 'dish', 'prepared', 'comparison', 'similar', 'thai', 'restaurants', 'replied', 'every', 'place', 'makes', 'things', 'differently']"
+negative,1662726,1662726:3,"
+     While it is understandable that every place is indeed different, there was not a need to be uncourteous to customers and downright rude.
+    ",SERVICE#GENERAL,NULL,"('0', '0')","['While', 'understandable', 'every', 'place', 'indeed', 'different', 'need', 'uncourteous', 'customers', 'downright', 'rude']"
+negative,1662726,1662726:5,"
+     Never again!
+    ",RESTAURANT#GENERAL,NULL,"('0', '0')",['Never']
+positive,1663111,1663111:0,"
+     I absolutely Loved this place.
+    ",RESTAURANT#GENERAL,place,"('24', '29')","['I', 'absolutely', 'Loved', 'place']"
+positive,1663111,1663111:2,"
+     Excellent atmosphere, delicious dishes good and friendly service.
+    ",AMBIENCE#GENERAL,atmosphere,"('10', '20')","['Excellent', 'atmosphere', 'delicious', 'dishes', 'good', 'friendly', 'service']"
+positive,1663111,1663111:2,"
+     Excellent atmosphere, delicious dishes good and friendly service.
+    ",FOOD#QUALITY,dishes,"('32', '38')","['Excellent', 'atmosphere', 'delicious', 'dishes', 'good', 'friendly', 'service']"
+positive,1663111,1663111:2,"
+     Excellent atmosphere, delicious dishes good and friendly service.
+    ",SERVICE#GENERAL,service,"('57', '64')","['Excellent', 'atmosphere', 'delicious', 'dishes', 'good', 'friendly', 'service']"
+positive,1663111,1663111:3,"
+     this is can became on e of the NY Italian Food fare institutions.
+    ",RESTAURANT#GENERAL,NULL,"('0', '0')","['became', 'e', 'NY', 'Italian', 'Food', 'fare', 'institutions']"
+positive,1663111,1663111:4,"
+     I think that it is absolutely brilliant and well runned business operation.
+    ",RESTAURANT#GENERAL,NULL,"('0', '0')","['I', 'think', 'absolutely', 'brilliant', 'well', 'runned', 'business', 'operation']"
+positive,1663111,1663111:5,"
+     The wine list is also really nice.
+    ",DRINKS#STYLE_OPTIONS,wine list,"('4', '13')","['The', 'wine', 'list', 'also', 'really', 'nice']"
+positive,1664346,1664346:1,"
+     Everything was wonderful; food, drinks, staff, mileau.
+    ",RESTAURANT#GENERAL,NULL,"('0', '0')","['Everything', 'wonderful', 'food', 'drinks', 'staff', 'mileau']"
+positive,1664346,1664346:1,"
+     Everything was wonderful; food, drinks, staff, mileau.
+    ",FOOD#QUALITY,food,"('26', '30')","['Everything', 'wonderful', 'food', 'drinks', 'staff', 'mileau']"
+positive,1664346,1664346:1,"
+     Everything was wonderful; food, drinks, staff, mileau.
+    ",DRINKS#QUALITY,drinks,"('32', '38')","['Everything', 'wonderful', 'food', 'drinks', 'staff', 'mileau']"
+positive,1664346,1664346:1,"
+     Everything was wonderful; food, drinks, staff, mileau.
+    ",SERVICE#GENERAL,staff,"('40', '45')","['Everything', 'wonderful', 'food', 'drinks', 'staff', 'mileau']"
+positive,1664346,1664346:1,"
+     Everything was wonderful; food, drinks, staff, mileau.
+    ",AMBIENCE#GENERAL,mileau,"('47', '53')","['Everything', 'wonderful', 'food', 'drinks', 'staff', 'mileau']"
+positive,1664346,1664346:2,"
+     I would highly recommend this place!
+    ",RESTAURANT#GENERAL,place,"('30', '35')","['I', 'would', 'highly', 'recommend', 'place']"
+positive,1671113,1671113:0,"
+     I have been to Casimir over 5 times and I have always had a great time there.
+    ",RESTAURANT#GENERAL,Casimir,"('15', '22')","['I', 'Casimir', '5', 'times', 'I', 'always', 'great', 'time']"
+positive,1671113,1671113:1,"
+     The food is great and reasonably priced.
+    ",FOOD#QUALITY,food,"('4', '8')","['The', 'food', 'great', 'reasonably', 'priced']"
+positive,1671113,1671113:1,"
+     The food is great and reasonably priced.
+    ",FOOD#PRICES,food,"('4', '8')","['The', 'food', 'great', 'reasonably', 'priced']"
+negative,1671113,1671113:2,"
+     I have tried to make reservations, but both times, the hostess didn't have my name.
+    ",SERVICE#GENERAL,hostess,"('55', '62')","['I', 'tried', 'make', 'reservations', 'times', 'hostess', 'name']"
+positive,1671113,1671113:3,"
+     If the weather is nice, try to snag an outside table.
+    ",AMBIENCE#GENERAL,outside table,"('39', '52')","['If', 'weather', 'nice', 'try', 'snag', 'outside', 'table']"
+positive,1671113,1671113:4,"
+     The staff has been nice, but they seemed really stressed and the unisex bathroom needs to be cleaned more often.
+    ",SERVICE#GENERAL,staff,"('4', '9')","['The', 'staff', 'nice', 'seemed', 'really', 'stressed', 'unisex', 'bathroom', 'needs', 'cleaned', 'often']"
+negative,1671113,1671113:4,"
+     The staff has been nice, but they seemed really stressed and the unisex bathroom needs to be cleaned more often.
+    ",SERVICE#GENERAL,staff,"('4', '9')","['The', 'staff', 'nice', 'seemed', 'really', 'stressed', 'unisex', 'bathroom', 'needs', 'cleaned', 'often']"
+negative,1671113,1671113:4,"
+     The staff has been nice, but they seemed really stressed and the unisex bathroom needs to be cleaned more often.
+    ",AMBIENCE#GENERAL,unisex bathroom,"('65', '80')","['The', 'staff', 'nice', 'seemed', 'really', 'stressed', 'unisex', 'bathroom', 'needs', 'cleaned', 'often']"
+positive,1700205,1700205:0,"
+     My boyfriend and I went there to celebrate my birthday the other night and all I can say is that it was magnificent.
+    ",RESTAURANT#GENERAL,NULL,"('0', '0')","['My', 'boyfriend', 'I', 'went', 'celebrate', 'birthday', 'night', 'I', 'say', 'magnificent']"
+positive,1700205,1700205:1,"
+     From the spectacular caviar to the hospitable waitstaff, I felt like royalty and enjoyed every second of it.
+    ",FOOD#QUALITY,caviar,"('21', '27')","['From', 'spectacular', 'caviar', 'hospitable', 'waitstaff', 'I', 'felt', 'like', 'royalty', 'enjoyed', 'every', 'second']"
+positive,1700205,1700205:1,"
+     From the spectacular caviar to the hospitable waitstaff, I felt like royalty and enjoyed every second of it.
+    ",SERVICE#GENERAL,waitstaff,"('46', '55')","['From', 'spectacular', 'caviar', 'hospitable', 'waitstaff', 'I', 'felt', 'like', 'royalty', 'enjoyed', 'every', 'second']"
+positive,1700205,1700205:2,"
+     Considering we were the last patrons there and it was after the closing time, the waitstaff did not rush us at all and made us feel comfortable and relaxed.
+    ",SERVICE#GENERAL,waitstaff,"('82', '91')","['Considering', 'last', 'patrons', 'closing', 'time', 'waitstaff', 'rush', 'us', 'made', 'us', 'feel', 'comfortable', 'relaxed']"
+positive,1700205,1700205:3,"
+     I highly recommend Caviar Russe to anyone who wants delicious top grade caviar and fantastic service.
+    ",FOOD#QUALITY,caviar,"('72', '78')","['I', 'highly', 'recommend', 'Caviar', 'Russe', 'anyone', 'wants', 'delicious', 'top', 'grade', 'caviar', 'fantastic', 'service']"
+positive,1700205,1700205:3,"
+     I highly recommend Caviar Russe to anyone who wants delicious top grade caviar and fantastic service.
+    ",SERVICE#GENERAL,service,"('93', '100')","['I', 'highly', 'recommend', 'Caviar', 'Russe', 'anyone', 'wants', 'delicious', 'top', 'grade', 'caviar', 'fantastic', 'service']"
+positive,1702257,1702257:0,"
+     Nice Family owned traditional restaurant.
+    ",RESTAURANT#GENERAL,restaurant,"('30', '40')","['Nice', 'Family', 'owned', 'traditional', 'restaurant']"
+positive,1702257,1702257:1,"
+     Fresh ingredients and everything is made to order.
+    ",FOOD#QUALITY,ingredients,"('6', '17')","['Fresh', 'ingredients', 'everything', 'made', 'order']"
+positive,1702257,1702257:1,"
+     Fresh ingredients and everything is made to order.
+    ",FOOD#QUALITY,NULL,"('0', '0')","['Fresh', 'ingredients', 'everything', 'made', 'order']"
+positive,1702257,1702257:2,"
+     I was pleasantly surprised to find this gem in Hoboken.
+    ",RESTAURANT#GENERAL,NULL,"('0', '0')","['I', 'pleasantly', 'surprised', 'find', 'gem', 'Hoboken']"
+positive,1702257,1702257:3,"
+     Friendly staff that actually lets you enjoy your meal and the company you're with.
+    ",SERVICE#GENERAL,staff,"('9', '14')","['Friendly', 'staff', 'actually', 'lets', 'enjoy', 'meal', 'company']"
+positive,1706644,1706644:1,"
+     I found the food to be outstanding, particulary the salmon dish I had.
+    ",FOOD#QUALITY,food,"('12', '16')","['I', 'found', 'food', 'outstanding', 'particulary', 'salmon', 'dish', 'I']"
+positive,1706644,1706644:1,"
+     I found the food to be outstanding, particulary the salmon dish I had.
+    ",FOOD#QUALITY,salmon dish,"('52', '63')","['I', 'found', 'food', 'outstanding', 'particulary', 'salmon', 'dish', 'I']"
+positive,1706644,1706644:2,"
+     I also ordered the Change Mojito, which was out of this world.
+    ",DRINKS#QUALITY,Change Mojito,"('19', '32')","['I', 'also', 'ordered', 'Change', 'Mojito', 'world']"
+neutral,1706644,1706644:3,"
+     My friends settled for rice dishes, but we came back the following day to try the dim sum, which was good...not outstanding, but good.
+    ",FOOD#QUALITY,dim sum,"('82', '89')","['My', 'friends', 'settled', 'rice', 'dishes', 'came', 'back', 'following', 'day', 'try', 'dim', 'sum', 'good', 'outstanding', 'good']"
+positive,1706644,1706644:4,"
+     We ate out in the back patio, which is worth it as it's cool and the music is hear well there.
+    ",AMBIENCE#GENERAL,back patio,"('18', '28')","['We', 'ate', 'back', 'patio', 'worth', 'cool', 'music', 'hear', 'well']"
+positive,1706644,1706644:4,"
+     We ate out in the back patio, which is worth it as it's cool and the music is hear well there.
+    ",AMBIENCE#GENERAL,music,"('69', '74')","['We', 'ate', 'back', 'patio', 'worth', 'cool', 'music', 'hear', 'well']"
+positive,1706644,1706644:5,"
+     Overall, excellent restaurant!
+    ",RESTAURANT#GENERAL,restaurant,"('19', '29')","['Overall', 'excellent', 'restaurant']"
+positive,1707201,1707201:1,"
+     The food was good.
+    ",FOOD#QUALITY,food,"('4', '8')","['The', 'food', 'good']"
+positive,1707201,1707201:2,"
+     The place was nice and calm.
+    ",AMBIENCE#GENERAL,place,"('4', '9')","['The', 'place', 'nice', 'calm']"
+negative,1707201,1707201:3,"
+     but the service was a bit slow.
+    ",SERVICE#GENERAL,service,"('8', '15')","['service', 'bit', 'slow']"
+positive,1707741,1707741:1,"
+     The buffet had a nice selection.
+    ",FOOD#STYLE_OPTIONS,buffet,"('4', '10')","['The', 'buffet', 'nice', 'selection']"
+positive,1707741,1707741:2,"
+     The food was average or above including some surprising tasty dishes.
+    ",FOOD#QUALITY,food,"('4', '8')","['The', 'food', 'average', 'including', 'surprising', 'tasty', 'dishes']"
+positive,1707741,1707741:2,"
+     The food was average or above including some surprising tasty dishes.
+    ",FOOD#QUALITY,dishes,"('62', '68')","['The', 'food', 'average', 'including', 'surprising', 'tasty', 'dishes']"
+positive,1707741,1707741:3,"
+     Service was also very good.
+    ",SERVICE#GENERAL,Service,"('0', '7')","['Service', 'also', 'good']"
+positive,1707741,1707741:4,"
+     I would go back.
+    ",RESTAURANT#GENERAL,NULL,"('0', '0')","['I', 'would', 'go', 'back']"
+positive,1710746,1710746:0,"
+     I got an excellent piece of cheesecake and we had several other nice pastries.
+    ",FOOD#QUALITY,cheesecake,"('28', '38')","['I', 'got', 'excellent', 'piece', 'cheesecake', 'several', 'nice', 'pastries']"
+positive,1710746,1710746:0,"
+     I got an excellent piece of cheesecake and we had several other nice pastries.
+    ",FOOD#QUALITY,pastries,"('69', '77')","['I', 'got', 'excellent', 'piece', 'cheesecake', 'several', 'nice', 'pastries']"
+negative,1710746,1710746:1,"
+     I would recommend Roxy's for that, but not for their food.
+    ",FOOD#QUALITY,food,"('53', '57')","['I', 'would', 'recommend', 'food']"
+positive,1710746,1710746:1,"
+     I would recommend Roxy's for that, but not for their food.
+    ",FOOD#QUALITY,NULL,"('0', '0')","['I', 'would', 'recommend', 'food']"
+neutral,1710746,1710746:2,"
+     My son and his girlfriend both wanted cheeseburgers and they were huge!
+    ",FOOD#STYLE_OPTIONS,cheeseburgers,"('38', '51')","['My', 'son', 'girlfriend', 'wanted', 'cheeseburgers', 'huge']"
+negative,1710746,1710746:3,"
+     But, they were too big for the bun.
+    ",FOOD#STYLE_OPTIONS,NULL,"('0', '0')","['But', 'big', 'bun']"
+negative,1710746,1710746:4,"
+     Consequently, their burgers fell apart in their hands and made such a mess that they did'nt feel like finishing them.
+    ",FOOD#STYLE_OPTIONS,burgers,"('20', '27')","['Consequently', 'burgers', 'fell', 'apart', 'hands', 'made', 'mess', 'feel', 'like', 'finishing']"
+negative,1710746,1710746:5,"
+     Also they were $15 each!
+    ",FOOD#PRICES,NULL,"('0', '0')","['Also', '15']"
+neutral,1710746,1710746:6,"
+     I had a huge pastrami sandwich on a roll.
+    ",FOOD#STYLE_OPTIONS,pastrami sandwich on a roll,"('13', '40')","['I', 'huge', 'pastrami', 'sandwich', 'roll']"
+neutral,1710746,1710746:7,"
+     It was $14 not really bad for a pound of Pastrami-but it didn't have much taste-I've had better for less elsewhere!
+    ",FOOD#PRICES,NULL,"('0', '0')","['It', '14', 'really', 'bad', 'pound', 'much', 'better', 'less', 'elsewhere']"
+negative,1710746,1710746:7,"
+     It was $14 not really bad for a pound of Pastrami-but it didn't have much taste-I've had better for less elsewhere!
+    ",FOOD#QUALITY,NULL,"('0', '0')","['It', '14', 'really', 'bad', 'pound', 'much', 'better', 'less', 'elsewhere']"
