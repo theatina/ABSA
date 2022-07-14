@@ -34,7 +34,7 @@ ________________________________________________________________________________
 1. not all sentences have opinions !!
 2. some sentences have >1 opinions
 3. TARGET had a bug!!! in 24 opinions -> e.g. <Opinion target="&quot;salt encrusted shrimp&quot; appetizer" category="FOOD#STYLE_OPTIONS" polarity="negative" from="37" to="70"/> -> omit them (or deal with them later)
-
+4. Ίσως είναι καλύτερα να δουλέψουμε με word embeddings παρά sentence embeddings όπως το sbert ή να φτιάξουμε dictionary με τα sentence representations
 
 
 

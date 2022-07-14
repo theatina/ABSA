@@ -2,6 +2,7 @@ import os
 import sys
 import pandas as pd
 import re
+import numpy as np
 
 from bs4 import BeautifulSoup
 
@@ -16,6 +17,11 @@ from nltk.util import ngrams
 from sklearn.preprocessing import LabelEncoder
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 
+from sentence_transformers import SentenceTransformer
+
+import gensim
+from gensim.models import Word2Vec, KeyedVectors
+
 def tok_text(text):
 
     tok = TweetTokenizer()
@@ -24,8 +30,134 @@ def tok_text(text):
 
     return tokens
 
+def token_WVs(all_tokens, w2v_model):
 
-def data_df(dataset_path, file_name, save_dir):
+    count_unknown=0
+    
+    unk_vector = np.zeros(w2v_model["the"].shape)
+    nump_zero_arrs=[  unk_vector for t in all_tokens ]
+    token_dict={k:v for k,v in zip(all_tokens,nump_zero_arrs)}
+    for tok in all_tokens:
+        if tok in w2v_model:
+            token_dict[tok]=w2v_model[tok]
+        else:
+            count_unknown+=1
+    
+    token_dict["<UNK>"] = np.zeros(w2v_model["the"].shape)
+    
+    return token_dict, count_unknown
+
+
+def text_WVs(text_list, token_vectors):
+#     for text in text_list:
+#         sent_vect_mean = 
+    
+    sentence_vects =[ np.array( [ token_vectors[token] if token in token_vectors else token_vectors["<UNK>"]  for token in s_tokens ] ).mean(axis=0) if len(s_tokens)>0 else token_vectors["<UNK>"] for s_tokens in text_list    ]      
+    return sentence_vects
+
+
+def get_tokens(sentences):
+    text_token_list = []
+    all_toks = []
+    for text in sentences:
+        tok = TweetTokenizer()
+        tokens = tok.tokenize(text)
+        tokens = [ t for t in tokens if t.isalnum() and t not in stopwords.words('english') ]
+        text_token_list.append(tokens)
+        all_toks.extend(tokens)
+    
+    return all_toks, text_token_list
+
+
+def Word2Vec_embs(sentences):
+
+    Word2Vec_news_emb_file = os.path.join(f"..{os.sep}Data{os.sep}GoogleNews-vectors-negative300.bin")
+    
+    google_news_vectors = KeyedVectors.load_word2vec_format(Word2Vec_news_emb_file, binary=True)
+
+    tok_list, tok_text_list = get_tokens(sentences)
+    token_vectors_dict_train, unk_words = token_WVs(tok_list, google_news_vectors)
+    print(f"\nUnknown Words: {unk_words} ({unk_words/(len(token_vectors_dict_train)-1)*100:.2f}%)")
+    sentence_vectors = text_WVs(tok_text_list, token_vectors_dict_train)
+
+    return sentence_vectors
+
+
+def sBERT_embs(sentences):
+    # !pip install sentence-transformers
+    sbert_model = SentenceTransformer('bert-base-nli-mean-tokens')
+    sentence_embeddings = sbert_model.encode(sentences)
+    return sentence_embeddings
+
+
+import io
+def fastText_embs(sentences, fname):
+    fin = io.open(fname, 'r', encoding='utf-8', newline='\n', errors='ignore')
+    n, d = map(int, fin.readline().split())
+    data = {}
+    for line in fin:
+        tokens = line.rstrip().split(' ')
+        data[tokens[0]] = map(float, tokens[1:])
+    return data
+
+import csv
+def sentence_enbeddings(dataset_path=f"..{os.sep}Data{os.sep}ABSA16_Restaurants_Train_SB1_v2.xml", embeddings="Word2Vec"):
+    with open(dataset_path, "r", encoding="utf-8") as xml_reader:
+        data = xml_reader.read()
+
+    all_sents = []
+    all_sent_ids = []
+    data_xml = BeautifulSoup(data, "xml")
+    data_rev = data_xml.find('Reviews')
+    data_reviews = data_rev.find_all('Review')
+    
+    for rev in data_reviews:
+        sent_list = rev.find_all('sentence')
+        if str( sent_list )!="[]":
+           for s in sent_list:
+                opinions =  s.find_all('Opinion')
+                for o in opinions:
+                    if str(o)!="[]":
+                        all_sents.append(s.find_all('text')[0].get_text())
+                        all_sent_ids.append(re.findall(r'id="(.*?)"', str(s))[0])
+    
+    # Word2Vec
+    sentence_embeds = []
+    if embeddings=="Word2Vec":
+        sentence_embeds = Word2Vec_embs(all_sents)
+
+    # Sentence BERT 
+    elif embeddings=="sBERT":
+        sentence_embeds = sBERT_embs(all_sents)
+    
+    elif embeddings=="FastText":
+        pass
+
+    emb_dict = { s_id:s_emb for s_id, s_emb in zip(all_sent_ids, sentence_embeds)}
+    
+    # csv_columns = embeddings
+    csv_file = f"EmbeddingDicts{os.sep}{embeddings}_sEmbeddings_dict.csv"
+    with open(csv_file, 'w', newline='') as csv_file_w:  
+
+        writer = csv.writer(csv_file_w, delimiter=',' )
+        for key, value in emb_dict.items():
+            writer.writerow([key, value])
+
+    return emb_dict
+
+
+def get_sEmbeddings_dict(dict_path):
+    
+    with open(dict_path, mode='r') as infile:
+        reader = csv.reader(infile, delimiter=',')
+        mydict = {rows[0]:rows[1] for rows in reader}
+    
+    return mydict
+
+def data_df(dataset_path, file_name, save_dir, embeddings="Word2Vec"):
+
+    wv_dict = get_sEmbeddings_dict(f"EmbeddingDicts{os.sep}{embeddings}_sEmbeddings_dict.csv")
+
     with open(dataset_path, "r", encoding="utf-8") as xml_reader:
         data = xml_reader.read()
 
@@ -33,6 +165,7 @@ def data_df(dataset_path, file_name, save_dir):
     
     data_rev = data_xml.find('Reviews')
     data_reviews = data_rev.find_all('Review')
+    
 
     rev_sentences = []
     rev_dict = {}
@@ -53,13 +186,15 @@ def data_df(dataset_path, file_name, save_dir):
             rev_sentences.append(sentences)
             for s in sentences:
                 s_id = re.findall(r'id="(.*?)"', str(s))[0]
+
                 opinions =  s.find_all('Opinion')
                 for o in opinions:
                     if str(o)!="[]":       
                         sent_op_list.append(o)
+            
                         tokens = tok_text(s.find_all('text')[0].get_text())
                         if len(re.findall(r'target="(.*?)"', str(o)))>0:
-                            all_ops.append([ re.findall(r'polarity="(.*?)"', str(o))[0], r_id, s_id,  s.find_all('text')[0].get_text(), re.findall(r'category="(.*?)"', str(o))[0], re.findall(r'target="(.*?)"', str(o))[0], (re.findall(r'from="(.*?)"', str(o))[0], re.findall(r'to="(.*?)"', str(o))[0]), tokens  ] )
+                            all_ops.append([ re.findall(r'polarity="(.*?)"', str(o))[0], r_id, s_id,  s.find_all('text')[0].get_text(), wv_dict[s_id], re.findall(r'category="(.*?)"', str(o))[0], re.findall(r'target="(.*?)"', str(o))[0], (re.findall(r'from="(.*?)"', str(o))[0], re.findall(r'to="(.*?)"', str(o))[0]), tokens  ] )
             
                 sent_dict[s_id]=sent_op_list
                 temp_s_dict[s_id]=sent_op_list
@@ -77,7 +212,7 @@ def data_df(dataset_path, file_name, save_dir):
 
 
 
-    col_names = [ "polarity", "review_id", "sentence_id", "text", "op_category", "op_target", "op_OTE_offset", "tokens" ]
+    col_names = [ "polarity", "review_id", "sentence_id", "text", f"sentence_{embeddings}_emb", "op_category", "op_target", "op_OTE_offset", "tokens" ]
     data_df = pd.DataFrame(all_ops, columns=col_names)
 
 
@@ -202,20 +337,21 @@ if __name__=="__main__":
         df = data_df(f"..\Data\Parts\part{i+1}.xml", f"part{i+1}", save_dir)
         all_data_df = pd.concat( [ all_data_df , df])
 
+    print(sentence_enbeddings(embeddings="Word2Vec"))
 
     # add features
-    add_feat_POS(all_data_df)
-    add_feat_freq(all_data_df)
-    add_feat_sentiment(all_data_df)
-    add_feat_ngrams(all_data_df,2)
-    add_feat_ngrams(all_data_df,3)
-    add_feat_ngrams(all_data_df,4)
-    add_feat_stemming(all_data_df)
-    add_feat_lemmas(all_data_df)
-    add_feat_CountVect(all_data_df)
-    add_feat_TfidfVect(all_data_df)
+    # add_feat_POS(all_data_df)
+    # add_feat_freq(all_data_df)
+    # add_feat_sentiment(all_data_df)
+    # add_feat_ngrams(all_data_df,2)
+    # add_feat_ngrams(all_data_df,3)
+    # add_feat_ngrams(all_data_df,4)
+    # add_feat_stemming(all_data_df)
+    # add_feat_lemmas(all_data_df)
+    # add_feat_CountVect(all_data_df)
+    # add_feat_TfidfVect(all_data_df)
 
-    alpha_to_numerical(all_data_df,"polarity")
+    # alpha_to_numerical(all_data_df,"polarity")
 
     
     # print(all_data_df["countVect"])
@@ -224,6 +360,6 @@ if __name__=="__main__":
     # labels = all_data_df["polarity"].values
     # all_data_df.pop("polarity")
 
-    file_name = f"allFeats"
-    data_df_filepath = os.path.join(save_dir,f"opinions_polarity_{file_name}.csv")
-    all_data_df.to_csv(data_df_filepath, index=False, header=True)
+    # file_name = f"allFeats"
+    # data_df_filepath = os.path.join(save_dir,f"opinions_polarity_{file_name}.csv")
+    # all_data_df.to_csv(data_df_filepath, index=False, header=True)
