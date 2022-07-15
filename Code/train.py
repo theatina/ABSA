@@ -4,13 +4,17 @@ import pandas as pd
 import numpy as np
 from collections import defaultdict
 import pickle
+from matplotlib import pyplot as plt
 
 from nltk.tokenize import word_tokenize
 from nltk import pos_tag
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import wordnet as wn
+from sklearn.cluster import k_means
 
+import skfeature
+from skfeature.function.similarity_based import fisher_score
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn import model_selection, naive_bayes, svm
 from sklearn.metrics import accuracy_score, classification_report
@@ -20,6 +24,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler, MinMaxScaler, MaxAbsScaler
 from sklearn.linear_model import LogisticRegression
+from sklearn.feature_selection import chi2, SelectKBest, mutual_info_classif
 
 from fun_lib import functions_data as funs_d
 from fun_lib import functions_training as funs_t
@@ -172,6 +177,16 @@ def train(X_train, y_train, classificationAlgo="RF" ):
 
     return model
 
+def feat_selection(X,y,k_best=100):
+    best_feats = mutual_info_classif(X,y)
+    indices = (-best_feats).argsort()[:k_best]
+    X_best = SelectKBest( mutual_info_classif, k=k_best).fit_transform(X,y)
+    feat_name_list = [f for f in X.columns]
+    feat_names = [feat_name_list[index] for index in indices]
+    # print(f"\n{k_best} Best Feats\n{feat_names}")
+    plt.show()
+    return X_best
+
 def save_model(model, filepath):
     pickle.dump(model, open(filepath, 'wb'))
 
@@ -190,8 +205,18 @@ if __name__=="__main__":
         algo_name = sys.argv[1]
 
     X_train, X_test, y_train, y_test = data_proc(parts_to_use, embeddings)
+
+
+    # X_train_fisher = fisher_score.fisher_score(X_train.values, y_train)
+    # ft_importancies = pd.Series(X_train_fisher)
+    # ft_importancies.plot(kind="barh", color="teal")
+    # plt.show()
     
-    model = train(X_train, y_train, algo_name)
+    # feature selection methods
+    X_train_best= feat_selection(X_train,y_train)
+    
+
+    model = train(X_train_best, y_train, algo_name)
     parts_str = "_".join([str(i) for i in parts_to_use])
     
     filepath=f"..{os.sep}Models{os.sep}{algo_name}_parts_{parts_str}_{embeddings}.model"
