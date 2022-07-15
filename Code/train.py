@@ -12,6 +12,7 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import wordnet as wn
 from sklearn.cluster import k_means
+from sympy import evaluate
 
 import skfeature
 from skfeature.function.similarity_based import fisher_score
@@ -28,7 +29,7 @@ from sklearn.feature_selection import chi2, SelectKBest, mutual_info_classif
 
 from fun_lib import functions_data as funs_d
 from fun_lib import functions_training as funs_t
-
+import test as tst
 
 
 def load_df_parts(embeddings, part_list=[i for i in range(10)]):
@@ -177,15 +178,14 @@ def train(X_train, y_train, classificationAlgo="RF" ):
 
     return model
 
-def feat_selection(X,y,k_best=100):
-    best_feats = mutual_info_classif(X,y)
+def feat_selection(X_train,y,X_test,k_best=100):
+    best_feats = mutual_info_classif(X_train,y)
     indices = (-best_feats).argsort()[:k_best]
-    X_best = SelectKBest( mutual_info_classif, k=k_best).fit_transform(X,y)
-    feat_name_list = [f for f in X.columns]
+    X_best = SelectKBest( mutual_info_classif, k=k_best).fit_transform(X_train,y)
+    feat_name_list = [f for f in X_train.columns]
     feat_names = [feat_name_list[index] for index in indices]
     # print(f"\n{k_best} Best Feats\n{feat_names}")
-    plt.show()
-    return X_best
+    return X_best, X_test[feat_names]
 
 def save_model(model, filepath):
     pickle.dump(model, open(filepath, 'wb'))
@@ -204,19 +204,21 @@ if __name__=="__main__":
         parts_to_use = eval(sys.argv[2])
         algo_name = sys.argv[1]
 
+    # initial manually selected features
     X_train, X_test, y_train, y_test = data_proc(parts_to_use, embeddings)
-
+    model = train(X_train, y_train, algo_name)
+    tst.test(X_test,y_test,model)
 
     # X_train_fisher = fisher_score.fisher_score(X_train.values, y_train)
     # ft_importancies = pd.Series(X_train_fisher)
     # ft_importancies.plot(kind="barh", color="teal")
     # plt.show()
     
-    # feature selection methods
-    X_train_best= feat_selection(X_train,y_train)
-    
-
+    # feature selection method and test
+    X_train_best, X_test_best = feat_selection(X_train,y_train,X_test)
     model = train(X_train_best, y_train, algo_name)
+    tst.test(X_test_best,y_test,model)
+
     parts_str = "_".join([str(i) for i in parts_to_use])
     
     filepath=f"..{os.sep}Models{os.sep}{algo_name}_parts_{parts_str}_{embeddings}.model"
