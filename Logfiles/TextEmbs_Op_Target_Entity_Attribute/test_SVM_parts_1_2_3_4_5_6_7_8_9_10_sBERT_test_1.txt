@@ -1,0 +1,12 @@
+Model: SVM_parts_1_2_3_4_5_6_7_8_9_10_sBERT.model
+XML Part: 1
+
+              precision    recall  f1-score   support
+
+    Negative       0.88      0.84      0.86        63
+     Neutral       0.38      0.71      0.50         7
+    Positive       0.94      0.92      0.93       161
+
+    accuracy                           0.89       231
+   macro avg       0.73      0.82      0.76       231
+weighted avg       0.91      0.89      0.90       231

@@ -1,0 +1,12 @@
+Model: SVM_parts_1_2_3_4_5_6_7_8_9_10.model
+XML Part: 1
+
+              precision    recall  f1-score   support
+
+    Negative       0.92      0.70      0.79        63
+     Neutral       0.44      1.00      0.61         7
+    Positive       0.90      0.94      0.92       161
+
+    accuracy                           0.87       231
+   macro avg       0.75      0.88      0.77       231
+weighted avg       0.89      0.87      0.88       231

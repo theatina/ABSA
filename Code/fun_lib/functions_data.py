@@ -1,3 +1,4 @@
+from cProfile import label
 import os
 import sys
 from unicodedata import category
@@ -356,7 +357,12 @@ def add_feat_TfidfVect(df):
 
 def alpha_to_numerical(df,feat_name):
     le = LabelEncoder()
-    df[feat_name] = le.fit_transform(df[feat_name])
+    label_list = le.fit_transform(df[feat_name]).tolist()
+    # enc_labels = pd.Series(label_list)
+    df.pop(feat_name)
+    # df.drop(feat_name, axis = 1, inplace = True)
+    # df[feat_name] = enc_labels
+    df.insert( loc=len(df.columns), column=feat_name, value=label_list)
     return df, le
 
 
