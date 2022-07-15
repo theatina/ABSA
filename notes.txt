@@ -1,0 +1,68 @@
+________________________________________________________________________________
+# dataframe columns:
+
+1. Review id
+2. Sentence id
+3. Text
+4. Opinion Category (aspect)
+5. Opinion target
+6. Opinion Category offset ([from,to] / (from,to))
+
+LABEL: Opinion Polarity 
+
+
+
+________________________________________________________________________________
+# Features
+
+1. text embedding ?! (can experiment with BERT hidden layer output, word2Vec/GloVe - έχω μια εργασία που κάνω ακριβώς sentence embeddings )
+2. offset
+3. lexical (LIWC/DAL feats)
+4. emotion (models that predict emotions with scores)
+5. bi/tri grams
+6. syntactical feats (we can check https://arxiv.org/pdf/1911.00133v1.pdf + https://www.kaggle.com/datasets/ruchi798/stress-analysis-in-social-media )
+7. stemmed text
+8. POS tags
+9. named entities
+10. tfidf
+
+
+
+________________________________________________________________________________
+# Notes
+
+1. not all sentences have opinions !!
+2. some sentences have >1 opinions
+3. TARGET had a bug!!! in 24 opinions -> e.g. <Opinion target="&quot;salt encrusted shrimp&quot; appetizer" category="FOOD#STYLE_OPTIONS" polarity="negative" from="37" to="70"/> -> omit them (or deal with them later)
+4. Ίσως είναι καλύτερα να δουλέψουμε με word embeddings παρά sentence embeddings όπως το sbert ή να φτιάξουμε dictionary με τα sentence representations
+5. Λόγω του μικρού μήκους των προτάσεων, ίσως είναι καλύτερα να μην συμπεριληφθούν features που θα προσθέσουν θόρυβο κατά την εκπαίδευση χωρίς κάποια σημαντική προσθήκη πληροφορίας, άρα ίσως αρκoύν τα text embeddings, opinion target, opinion entity και opinion attribute!!
+6. Try dim<300 με feat selection multi classif και τεστ για συγκριση
+
+________________________________________________________________________________
+# References
+
+https://www.nltk.org/book/ch06.html
+https://www.guru99.com/pos-tagging-chunking-nltk.html
+http://galanisd.github.io/Papers/2016SemEvalABSATaskOverview.pdf
+https://github.com/theatina/ABSA
+https://stackoverflow.com/questions/56951979/how-to-append-a-new-tag-to-an-xml-tree-with-bs4
+https://realpython.com/python-nltk-sentiment-analysis/
+https://kandi.openweaver.com/python/mtrevi/EmotionsLIWClib#Summary
+https://realpython.com/python-nltk-sentiment-analysis/
+https://towardsdatascience.com/machine-learning-nlp-text-classification-using-scikit-learn-python-and-nltk-c52b92a7c73a
+https://www.educative.io/answers/how-to-use-svms-for-text-classification
+https://medium.com/@bedigunjit/simple-guide-to-text-classification-nlp-using-svm-and-naive-bayes-with-python-421db3a72d34
+https://www.scikit-yb.org/en/latest/api/model_selection/cross_validation.html
+https://github.com/pytorch/pytorch/issues/35803
+https://fasttext.cc/docs/en/english-vectors.html#content
+https://gitlab.com/language-technology-msc/programming-for-language-technology-ii-2021-2022/programminglangtechii_c02
+https://gitlab.com/language-technology-msc/programming-for-language-technology-ii-2021-2022/programminglangtechii_c10/-/blob/master/downloadandload.py
+https://gitlab.com/language-technology-msc/programming-for-language-technology-ii-2021-2022/programminglangtechii_c09/-/blob/master/pmi.py
+https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html
+https://towardsdatascience.com/categorical-feature-encoding-547707acf4e5#8135
+http://uc-r.github.io/creating-text-features
+https://towardsdatascience.com/leveraging-n-grams-to-extract-context-from-text-bdc576b47049
+https://towardsdatascience.com/text-analysis-feature-engineering-with-nlp-502d6ea9225d
+https://scikit-learn.org/stable/modules/preprocessing.html
+https://scikit-learn.org/stable/modules/feature_selection.html
+https://scikit-learn.org/stable/modules/feature_selection.html
