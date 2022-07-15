@@ -43,16 +43,16 @@ def load_df_parts(embeddings, part_list=[i for i in range(10)]):
 def add_feats(df, save_dir=f"..{os.sep}Data{os.sep}DataFrames"):
 
     # add features
-    # funs_d.add_feat_POS(df)
+    df = funs_d.add_feat_POS(df)
     # funs_d.add_feat_freq(df)
-    # funs_d.add_feat_sentiment(df)
-    # funs_d.add_feat_ngrams(df,2)
-    # funs_d.add_feat_ngrams(df,3)
-    # funs_d.add_feat_ngrams(df,4)
-    # funs_d.add_feat_stemming(df)
-    # funs_d.add_feat_lemmas(df)
-    # funs_d.add_feat_CountVect(df)
-    funs_d.alpha_to_numerical(df,"op_target")
+    df = funs_d.add_feat_sentiment(df)
+    df = funs_d.add_feat_ngrams(df,2)
+    df = funs_d.add_feat_ngrams(df,3)
+    df = funs_d.add_feat_ngrams(df,4)
+    df = funs_d.add_feat_stemming(df)
+    df = funs_d.add_feat_lemmas(df)
+    df = funs_d.add_feat_CountVect(df)
+
 
     file_name = f"allFeats"
     data_df_filepath = os.path.join(save_dir,f"opinions_polarity_{file_name}.csv")
@@ -70,6 +70,10 @@ def choose_feats(df):
     feats_to_keep.extend(["op_target"])
     feats_to_keep.extend(["op_entity"])
     feats_to_keep.extend(["op_attribute"])
+    # feats_to_keep.extend(["POS"])
+    # feats_to_keep.extend(["POS_mostCommon"])
+    # feats_to_keep.extend(["sentiment"])
+    # feats_to_keep.extend(["ngrams_2"])
 
     df = df[feats_to_keep]
 
@@ -87,7 +91,9 @@ def data_proc(parts_to_use, embeddings):
     # data_df.pop("polarity")
     data_df.drop('polarity', axis=1, inplace=True)
     
+    data_df = add_feats(data_df)
     data_df = choose_feats(data_df)
+    
 
     # split dataset
     X_train, X_test, y_train, y_test = train_test_split(data_df, labels, test_size=0.2, random_state=99)
@@ -110,13 +116,15 @@ def data_proc_train_test_parts(train_parts, test_parts, embeddings):
     # data_df_test.pop("polarity")
     data_df_train.drop('polarity', axis=1, inplace=True)
     data_df_test.drop('polarity', axis=1, inplace=True)
-
+    
+    data_df_train = add_feats(data_df_train)
+    data_df_test = add_feats(data_df_test)
+    
     data_df_train = choose_feats(data_df_train)
     data_df_test = choose_feats(data_df_test)
     
     # all_data_df.pop("polarity")
-    # add_feats(data_df_train)
-    # add_feats(data_df_test)
+    
 
     # split dataset
     # X_train, X_test_noUse, y_train, y_test_noUse = train_test_split(labels_train_df, labels_train_df, test_size=0.0, random_state=99)

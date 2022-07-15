@@ -35,7 +35,7 @@ ________________________________________________________________________________
 2. some sentences have >1 opinions
 3. TARGET had a bug!!! in 24 opinions -> e.g. <Opinion target="&quot;salt encrusted shrimp&quot; appetizer" category="FOOD#STYLE_OPTIONS" polarity="negative" from="37" to="70"/> -> omit them (or deal with them later)
 4. Ίσως είναι καλύτερα να δουλέψουμε με word embeddings παρά sentence embeddings όπως το sbert ή να φτιάξουμε dictionary με τα sentence representations
-
+5. Λόγω του μικρού μήκους των προτάσεων, ίσως είναι καλύτερα να μην συμπεριληφθούν features που θα προσθέσουν θόρυβο κατά την εκπαίδευση χωρίς κάποια σημαντική προσθήκη πληροφορίας, άρα ίσως αρκoύν τα text embeddings, opinion target, opinion entity και opinion attribute!!
 
 
 ________________________________________________________________________________

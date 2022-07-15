@@ -3,8 +3,12 @@ import sys
 import random
 import pandas as pd
 import pickle
+from matplotlib import pyplot as plt
 
-from sklearn.metrics import classification_report
+from sklearn.metrics import classification_report, roc_auc_score, roc_curve, auc
+from sklearn.multiclass import OneVsRestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
 
 from fun_lib import functions_data as funs_d
 from fun_lib import functions_training as funs_t
@@ -21,7 +25,6 @@ def load_df_parts(embeddings, part_list=[i for i in range(10)]):
     return all_data_df
 
 
-
 def data_proc(part_to_use, embeddings):
     
     df = load_df_parts(embeddings, part_to_use)
@@ -33,7 +36,6 @@ def data_proc(part_to_use, embeddings):
     df = funs_t.choose_feats(df)
     
     return df, labels_df
-
 
 
 def logging(py_file, model_name, part, predictions, c_rep):
@@ -64,6 +66,39 @@ def test_steps(X_test, y_test, model_name, part):
 
     return model
 
+def plot_roc(model,X,y,model_name,part=1,mode="Test", embeddings="sBERT"):
+    plt.clf()
+    # generate 2 class dataset
+    # X, y = make_classification(n_samples=1000, n_classes=3, n_features=20, n_informative=3, random_state=42)
+
+    # split into train/test sets
+    # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4, random_state=42)
+    pred = model.predict(X)
+    pred_prob = model.predict_proba(X)
+
+    # roc curve for classes
+    fpr = {}
+    tpr = {}
+    thresh = {}
+    roc_auc = {}
+
+    n_class = 3
+
+    for i in range(n_class):    
+        fpr[i], tpr[i], thresh[i] = roc_curve(y, pred_prob[:,i], pos_label=i)
+        roc_auc[i] = auc(fpr[i], tpr[i])
+        
+    # plotting    
+    plt.plot(fpr[0], tpr[0], linestyle='--',color='orange', label=f'Class 0 - Negative (auc: {roc_auc[0]:.2f})')
+    plt.plot(fpr[1], tpr[1], linestyle='--',color='green', label=f'Class 1 - Neutral (auc: {roc_auc[1]:.2f})')
+    plt.plot(fpr[2], tpr[2], linestyle='--',color='blue', label=f'Class 2 - Positive (auc: {roc_auc[2]:.2f})')
+    plt.title(f'Multiclass ROC curve\n{model_name} - {embeddings}')
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive rate')
+    plt.legend(loc='best')
+    plt.savefig(f'..{os.sep}Results{os.sep}Figures{os.sep}{mode}{os.sep}{model_name}_{embeddings}_testPart{part}_ROC',dpi=300)
+
+
 
 if __name__=="__main__":
 
@@ -83,4 +118,9 @@ if __name__=="__main__":
 
 
     X_test, y_test = data_proc(part_to_use, embeddings)
-    test_steps(X_test, y_test, model_name, part_to_use[0])
+    model = test_steps(X_test, y_test, model_name, part_to_use[0])
+
+    plot_roc(model,X_test,y_test,model_name,part_to_use[0],"Test")
+
+
+

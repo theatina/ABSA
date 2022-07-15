@@ -1,0 +1,12 @@
+Model: LR_parts_1_2_3_4_5_6_7_8_9_10_sBERT
+XML Part: 3
+
+              precision    recall  f1-score   support
+
+    Negative       0.87      0.82      0.84        56
+     Neutral       0.80      0.62      0.70        13
+    Positive       0.94      0.97      0.96       177
+
+    accuracy                           0.92       246
+   macro avg       0.87      0.80      0.83       246
+weighted avg       0.92      0.92      0.92       246

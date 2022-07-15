@@ -8,6 +8,7 @@ import numpy as np
 
 from bs4 import BeautifulSoup
 
+import nltk
 from nltk.stem import PorterStemmer
 from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.tokenize import TweetTokenizer, sent_tokenize, word_tokenize, RegexpTokenizer
@@ -118,7 +119,7 @@ def fastText_embs(sentences, fname):
     return data
 
 import csv
-def sentence_enbeddings(dataset_path=f"..{os.sep}Data{os.sep}ABSA16_Restaurants_Train_SB1_v2.xml", embeddings="Word2Vec"):
+def sentence_enbeddings(dataset_path=f"..{os.sep}Data{os.sep}ABSA16_Restaurants_Train_SB1_v2.xml", embeddings="sBERT"):
     
     
     with open(dataset_path, "r", encoding="utf-8") as xml_reader:
@@ -173,7 +174,7 @@ def get_sEmbeddings_dict(dict_path):
     
     return mydict
 
-def data_df(dataset_path, file_name, save_dir, embeddings="Word2Vec"):
+def data_df(dataset_path, file_name, save_dir, embeddings="sBERT"):
 
     wv_dict = get_sEmbeddings_dict(f"EmbeddingDicts{os.sep}{embeddings}_sEmbeddings_dict.csv")
 
@@ -249,10 +250,13 @@ def data_df(dataset_path, file_name, save_dir, embeddings="Word2Vec"):
 
     return data_df
 
+
 def add_feat_tokens(df):
     tok_list = [ tok_text(t) for t in df["text"] ]
     df["tokens"] = tok_list
     return df
+
+
 
 def add_feat_POS(df):
     tok_list = list(df["tokens"].values)
@@ -260,10 +264,18 @@ def add_feat_POS(df):
     for toks in tok_list:
         pos = pos_tag(toks)
         pos_text_list.append(pos)
-    
+
     df["POS"] = pos_text_list
 
+    tag_freq_list = []
+    for tag_list in pos_text_list:
+        tag_fd = nltk.FreqDist( tag for (word, tag) in tag_list)
+        tag_freq_list.append(tag_fd.most_common(5))
+    
+    df["POS_mostCommon"] = tag_freq_list
+
     return df
+
 
 def add_feat_freq(df):
     tok_list = list(df["tokens"].values)
@@ -371,8 +383,8 @@ if __name__=="__main__":
     save_dir = "..\Data\DataFrames"
     all_data_df = pd.DataFrame()
 
-    embeddings="Word2Vec"
-    # embeddings="sBERT"
+    # embeddings="Word2Vec"
+    embeddings="sBERT"
     
     for i in range(10):
         
@@ -383,7 +395,7 @@ if __name__=="__main__":
 
     # embeddings_df(all_data_df,embeddings)
     # add features
-    # add_feat_POS(all_data_df)
+    
     # add_feat_freq(all_data_df)
     # add_feat_sentiment(all_data_df)
     # add_feat_ngrams(all_data_df,2)
@@ -394,9 +406,9 @@ if __name__=="__main__":
     # add_feat_CountVect(all_data_df)
     # add_feat_TfidfVect(all_data_df)
 
-    alpha_to_numerical(all_data_df,"polarity")
+    all_data_df,le = alpha_to_numerical(all_data_df,"polarity")
+    all_data_df = add_feat_POS(all_data_df)
 
-    
     # print(all_data_df["countVect"])
     # print(all_data_df["tfidfVect"])
  

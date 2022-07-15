@@ -73,6 +73,7 @@ with open(logfile_path, "w", encoding="utf-8") as logger:
     
         logger.write( c_rep )
         logger.write("\n\n")
+        tst.plot_roc(model,X_test,y_test,algo_name,part_no,mode="Experiments",embeddings=embeddings)
 
     score_str = f"\n\n> Average Scores\nAccuracy: {sum(acc_list)/k_folds:.3f} | Precision: {sum(precision_list)/k_folds:.3f} | Recall: {sum(recall_list)/k_folds:.3f} | F1: {sum(f1_list)/k_folds:.3f}\n\n"
     print(score_str)
