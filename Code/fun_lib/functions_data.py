@@ -1,5 +1,6 @@
 import os
 import sys
+from unicodedata import category
 import pandas as pd
 import re
 import numpy as np
@@ -21,6 +22,7 @@ from sentence_transformers import SentenceTransformer
 
 import gensim
 from gensim.models import Word2Vec, KeyedVectors
+from torch import embedding
 
 def tok_text(text):
 
@@ -29,6 +31,22 @@ def tok_text(text):
     tokens = [ t for t in tokens if t.isalnum() and t not in stopwords.words('english') ]
 
     return tokens
+
+def embeddings_df(df, embeddings):
+
+    embs = [ eval(enc) if type(enc)!=list else enc for enc in df[f"sentence_{embeddings}_emb"]  ]
+    text_embed_names = [ str(i) for i in range(len(embs[0])) ]
+    embs_df = pd.DataFrame(embs, columns=text_embed_names)
+
+    return embs_df
+
+
+def embs_feats_df(df, embs_df):
+
+    embFeats_df = embs_df.join(df)
+
+    return embFeats_df
+
 
 def token_WVs(all_tokens, w2v_model):
 
@@ -51,7 +69,6 @@ def token_WVs(all_tokens, w2v_model):
 def text_WVs(text_list, token_vectors):
 #     for text in text_list:
 #         sent_vect_mean = 
-    
     sentence_vects =[ np.array( [ token_vectors[token] if token in token_vectors else token_vectors["<UNK>"]  for token in s_tokens ] ).mean(axis=0) if len(s_tokens)>0 else token_vectors["<UNK>"] for s_tokens in text_list    ]      
     return sentence_vects
 
@@ -70,15 +87,13 @@ def get_tokens(sentences):
 
 
 def Word2Vec_embs(sentences):
-
     Word2Vec_news_emb_file = os.path.join(f"..{os.sep}Data{os.sep}GoogleNews-vectors-negative300.bin")
-    
     google_news_vectors = KeyedVectors.load_word2vec_format(Word2Vec_news_emb_file, binary=True)
-
     tok_list, tok_text_list = get_tokens(sentences)
     token_vectors_dict_train, unk_words = token_WVs(tok_list, google_news_vectors)
     print(f"\nUnknown Words: {unk_words} ({unk_words/(len(token_vectors_dict_train)-1)*100:.2f}%)")
     sentence_vectors = text_WVs(tok_text_list, token_vectors_dict_train)
+    sentence_vectors = [ vect.tolist() for vect in sentence_vectors ]
 
     return sentence_vectors
 
@@ -87,6 +102,7 @@ def sBERT_embs(sentences):
     # !pip install sentence-transformers
     sbert_model = SentenceTransformer('bert-base-nli-mean-tokens')
     sentence_embeddings = sbert_model.encode(sentences)
+    sentence_embeddings = [ vect.tolist() for vect in sentence_embeddings ]
     return sentence_embeddings
 
 
@@ -102,6 +118,8 @@ def fastText_embs(sentences, fname):
 
 import csv
 def sentence_enbeddings(dataset_path=f"..{os.sep}Data{os.sep}ABSA16_Restaurants_Train_SB1_v2.xml", embeddings="Word2Vec"):
+    
+    
     with open(dataset_path, "r", encoding="utf-8") as xml_reader:
         data = xml_reader.read()
 
@@ -194,7 +212,15 @@ def data_df(dataset_path, file_name, save_dir, embeddings="Word2Vec"):
             
                         tokens = tok_text(s.find_all('text')[0].get_text())
                         if len(re.findall(r'target="(.*?)"', str(o)))>0:
-                            all_ops.append([ re.findall(r'polarity="(.*?)"', str(o))[0], r_id, s_id,  s.find_all('text')[0].get_text(), wv_dict[s_id], re.findall(r'category="(.*?)"', str(o))[0], re.findall(r'target="(.*?)"', str(o))[0], (re.findall(r'from="(.*?)"', str(o))[0], re.findall(r'to="(.*?)"', str(o))[0]), tokens  ] )
+                            polarity = re.findall(r'polarity="(.*?)"', str(o))[0]
+                            s_text = s.find_all('text')[0].get_text()
+                            op_category =  re.findall(r'category="(.*?)"', str(o))[0]
+                            op_entity = op_category.split("#")[0]
+                            op_attribute = op_category.split("#")[1]
+                            op_target = re.findall(r'target="(.*?)"', str(o))[0]
+                            op_OTE_offset = ( int(re.findall(r'from="(.*?)"', str(o))[0]), int(re.findall(r'to="(.*?)"', str(o))[0]))
+
+                            all_ops.append([ polarity, r_id, s_id, s_text, wv_dict[s_id], op_category, op_entity, op_attribute, op_target, op_OTE_offset, tokens  ] )
             
                 sent_dict[s_id]=sent_op_list
                 temp_s_dict[s_id]=sent_op_list
@@ -212,14 +238,20 @@ def data_df(dataset_path, file_name, save_dir, embeddings="Word2Vec"):
 
 
 
-    col_names = [ "polarity", "review_id", "sentence_id", "text", f"sentence_{embeddings}_emb", "op_category", "op_target", "op_OTE_offset", "tokens" ]
+    col_names = [ "polarity", "review_id", "sentence_id", "text", f"sentence_{embeddings}_emb", "op_category", "op_entity", "op_attribute", "op_target", "op_OTE_offset", "tokens" ]
     data_df = pd.DataFrame(all_ops, columns=col_names)
 
+    data_df=embs_feats_df(data_df,embeddings_df(data_df, embeddings=embeddings))
 
     data_df_filepath = os.path.join(save_dir,f"opinions_polarity_{file_name}.csv")
     data_df.to_csv(data_df_filepath, index=False, header=True)
 
     return data_df
+
+def add_feat_tokens(df):
+    tok_list = [ tok_text(t) for t in df["text"] ]
+    df["tokens"] = tok_list
+    return df
 
 def add_feat_POS(df):
     tok_list = list(df["tokens"].values)
@@ -332,13 +364,18 @@ def alpha_to_numerical(df,feat_name):
 if __name__=="__main__":
     save_dir = "..\Data\DataFrames"
     all_data_df = pd.DataFrame()
+
+    embeddings="Word2Vec"
+    # embeddings="sBERT"
+    
     for i in range(10):
         
-        df = data_df(f"..\Data\Parts\part{i+1}.xml", f"part{i+1}", save_dir)
+        df = data_df(f"..\Data\Parts\part{i+1}.xml", f"part{i+1}", save_dir, embeddings=embeddings)
         all_data_df = pd.concat( [ all_data_df , df])
 
-    print(sentence_enbeddings(embeddings="Word2Vec"))
+    # sentence_enbeddings(embeddings=embeddings)
 
+    # embeddings_df(all_data_df,embeddings)
     # add features
     # add_feat_POS(all_data_df)
     # add_feat_freq(all_data_df)
@@ -351,7 +388,7 @@ if __name__=="__main__":
     # add_feat_CountVect(all_data_df)
     # add_feat_TfidfVect(all_data_df)
 
-    # alpha_to_numerical(all_data_df,"polarity")
+    alpha_to_numerical(all_data_df,"polarity")
 
     
     # print(all_data_df["countVect"])
