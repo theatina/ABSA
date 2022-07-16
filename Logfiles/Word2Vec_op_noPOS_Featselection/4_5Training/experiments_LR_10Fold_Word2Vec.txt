@@ -1,0 +1,166 @@
+Model: LR
+
+XML Parts
+Training: [2, 3, 4, 5, 6, 7, 8, 9, 10]
+Test: 1
+
+              precision    recall  f1-score   support
+
+    Negative       0.25      0.25      0.25        63
+     Neutral       0.00      0.00      0.00         7
+    Positive       0.70      0.71      0.70       161
+
+    accuracy                           0.56       231
+   macro avg       0.32      0.32      0.32       231
+weighted avg       0.55      0.56      0.56       231
+
+
+
+XML Parts
+Training: [1, 3, 4, 5, 6, 7, 8, 9, 10]
+Test: 2
+
+              precision    recall  f1-score   support
+
+    Negative       0.19      0.27      0.22        37
+     Neutral       0.00      0.00      0.00        10
+    Positive       0.80      0.76      0.78       177
+
+    accuracy                           0.65       224
+   macro avg       0.33      0.34      0.33       224
+weighted avg       0.67      0.65      0.65       224
+
+
+
+XML Parts
+Training: [1, 2, 4, 5, 6, 7, 8, 9, 10]
+Test: 3
+
+              precision    recall  f1-score   support
+
+    Negative       0.00      0.00      0.00        56
+     Neutral       1.00      0.00      0.00        13
+    Positive       0.72      0.99      0.83       177
+
+    accuracy                           0.72       246
+   macro avg       0.57      0.33      0.28       246
+weighted avg       0.57      0.72      0.60       246
+
+
+
+XML Parts
+Training: [1, 2, 3, 5, 6, 7, 8, 9, 10]
+Test: 4
+
+              precision    recall  f1-score   support
+
+    Negative       0.33      0.34      0.34        76
+     Neutral       0.02      0.11      0.03         9
+    Positive       0.69      0.51      0.59       167
+
+    accuracy                           0.45       252
+   macro avg       0.35      0.32      0.32       252
+weighted avg       0.56      0.45      0.49       252
+
+
+
+XML Parts
+Training: [1, 2, 3, 4, 6, 7, 8, 9, 10]
+Test: 5
+
+              precision    recall  f1-score   support
+
+    Negative       0.38      0.09      0.15        64
+     Neutral       0.00      0.00      0.00         3
+    Positive       0.71      0.90      0.79       158
+
+    accuracy                           0.66       225
+   macro avg       0.36      0.33      0.31       225
+weighted avg       0.60      0.66      0.60       225
+
+
+
+XML Parts
+Training: [1, 2, 3, 4, 5, 7, 8, 9, 10]
+Test: 6
+
+              precision    recall  f1-score   support
+
+    Negative       0.17      0.08      0.11        50
+     Neutral       1.00      0.00      0.00         8
+    Positive       0.71      0.87      0.78       147
+
+    accuracy                           0.64       205
+   macro avg       0.62      0.32      0.30       205
+weighted avg       0.59      0.64      0.59       205
+
+
+
+XML Parts
+Training: [1, 2, 3, 4, 5, 6, 8, 9, 10]
+Test: 7
+
+              precision    recall  f1-score   support
+
+    Negative       0.32      0.50      0.39        54
+     Neutral       1.00      0.00      0.00         9
+    Positive       0.78      0.68      0.73       164
+
+    accuracy                           0.61       227
+   macro avg       0.70      0.39      0.37       227
+weighted avg       0.68      0.61      0.62       227
+
+
+
+XML Parts
+Training: [1, 2, 3, 4, 5, 6, 7, 9, 10]
+Test: 8
+
+              precision    recall  f1-score   support
+
+    Negative       0.26      0.47      0.33        47
+     Neutral       0.00      0.00      0.00         5
+    Positive       0.80      0.61      0.70       158
+
+    accuracy                           0.57       210
+   macro avg       0.35      0.36      0.34       210
+weighted avg       0.66      0.57      0.60       210
+
+
+
+XML Parts
+Training: [1, 2, 3, 4, 5, 6, 7, 8, 10]
+Test: 9
+
+              precision    recall  f1-score   support
+
+    Negative       0.27      0.84      0.40        61
+     Neutral       0.00      0.00      0.00        11
+    Positive       0.80      0.25      0.38       195
+
+    accuracy                           0.37       267
+   macro avg       0.36      0.36      0.26       267
+weighted avg       0.65      0.37      0.37       267
+
+
+
+XML Parts
+Training: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+Test: 10
+
+              precision    recall  f1-score   support
+
+    Negative       0.58      0.11      0.18       240
+     Neutral       0.03      0.04      0.03        26
+    Positive       0.32      0.70      0.44       153
+
+    accuracy                           0.32       419
+   macro avg       0.31      0.28      0.22       419
+weighted avg       0.45      0.32      0.27       419
+
+
+
+
+> Average Scores
+Accuracy: 0.555 | Precision: 0.427 | Recall: 0.337 | F1: 0.306
+

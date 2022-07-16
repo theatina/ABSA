@@ -12,7 +12,7 @@ from sklearn.model_selection import train_test_split
 
 from fun_lib import functions_data as funs_d
 from fun_lib import functions_training as funs_t
-
+import train as tr
 
 def load_df_parts(embeddings, part_list=[i for i in range(10)]):
     save_dir = "..\Data\DataFrames"
@@ -25,17 +25,28 @@ def load_df_parts(embeddings, part_list=[i for i in range(10)]):
     return all_data_df
 
 
-def data_proc(part_to_use, embeddings):
+def data_proc(part_to_use, embeddings, pos_list=[]):
     
     df = load_df_parts(embeddings, part_to_use)
     
     labels_df, le = funs_d.alpha_to_numerical(df,"polarity")
     labels_df = labels_df["polarity"].values
 
-    df.pop("polarity")
-    df = funs_t.choose_feats(df)
+    data_df, pos_list = tr.add_feats(data_df, pos_list)
+    X_best = tr.choose_feats(data_df)
     
-    return df, labels_df
+    # feature selection method and test
+    k_top_feats = int(4*df.shape[1]/5)
+    technique = "mutual_info_classif"
+    technique_short = "mic"
+    # technique = "mutual_info_regression"
+    # technique_short = "mir"
+    # print(f"\nFeature Selection\nTechnique: {technique}\nFeat num: {k_top_feats}\n")
+    # X_best, unused = tr.feat_selection(data_df,labels_df,data_df,k_best=k_top_feats,technique=technique_short)
+    
+
+
+    return X_best, labels_df
 
 
 def logging(py_file, model_name, part, predictions, c_rep):
@@ -106,6 +117,7 @@ if __name__=="__main__":
     part_to_use = [random.randint(1, 10)]
     model_name = "RF_parts_1_2_3_4_5_6_7_8_9_10_Word2Vec.model"
     embeddings = "sBERT"
+    # embeddings = "Word2Vec"
 
     # create model
     if len(sys.argv)<2:

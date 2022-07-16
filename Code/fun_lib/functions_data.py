@@ -429,8 +429,8 @@ if __name__=="__main__":
     # add_feat_CountVect(all_data_df)
     # add_feat_TfidfVect(all_data_df)
 
-    all_data_df,le = alpha_to_numerical(all_data_df,"polarity")
-    all_data_df = add_feat_POS(all_data_df)
+    # all_data_df,le = alpha_to_numerical(all_data_df,"polarity")
+    # all_data_df = add_feat_POS(all_data_df)
 
     # print(all_data_df["countVect"])
     # print(all_data_df["tfidfVect"])
@@ -441,3 +441,13 @@ if __name__=="__main__":
     # file_name = f"allFeats"
     # data_df_filepath = os.path.join(save_dir,f"opinions_polarity_{file_name}.csv")
     # all_data_df.to_csv(data_df_filepath, index=False, header=True)
+
+    # dataset visualization
+
+    print(len(all_data_df[ all_data_df["polarity"]=="negative" ]))
+    print(len(all_data_df[ all_data_df["polarity"]=="neutral" ]))
+    print(len(all_data_df[ all_data_df["polarity"]=="positive" ]))
+
+    lens = [ len(tok_text(t)) for t in all_data_df["text"].values ]
+    print(f"\nMax Len: {max(lens)} tokens | Min Len: {min(lens)} tokens")
+

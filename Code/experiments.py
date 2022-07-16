@@ -17,6 +17,7 @@ import test as tst
 # Random Forest
 default_class_algo = "RF"
 embeddings = "sBERT"
+# embeddings = "Word2Vec"
 
 # create model
 if len(sys.argv)<2:

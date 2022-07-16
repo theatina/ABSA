@@ -47,9 +47,9 @@ def load_df_parts(embeddings, part_list=[i for i in range(10)]):
 
 
 def add_feats(df, pos_list=[], save_dir=f"..{os.sep}Data{os.sep}DataFrames"):
-
+    pos_list = []
     # add features
-    df, pos_list = funs_d.add_feat_POS(df,pos_list)
+    # df, pos_list = funs_d.add_feat_POS(df,pos_list)
     # funs_d.add_feat_freq(df)
     # df = funs_d.add_feat_sentiment(df)
     # df = funs_d.add_feat_ngrams(df,2)
@@ -76,7 +76,7 @@ def choose_feats(df):
     feats_to_keep.extend(["op_target"])
     feats_to_keep.extend(["op_entity"])
     feats_to_keep.extend(["op_attribute"])
-    feats_to_keep.extend([ c for c in df.columns[-13:] ])
+    # feats_to_keep.extend([ c for c in df.columns[-13:] ])
     # feats_to_keep.extend(["POS"])
     # feats_to_keep.extend(["POS_mostCommon"])
     # feats_to_keep.extend(["sentiment"])
@@ -103,16 +103,16 @@ def data_proc(parts_to_use, embeddings, pos_list=[]):
     data_df = choose_feats(data_df)
     
     # split dataset
-    X_train, X_test, y_train, y_test = train_test_split(data_df, labels, test_size=0.2, random_state=99)
+    X_train_best, X_test_best, y_train, y_test = train_test_split(data_df, labels, test_size=0.2, random_state=99)
 
     # feature selection method and test
-    k_top_feats = int(X_train.shape[1]/2)
+    k_top_feats = int(4*X_train.shape[1]/5)
     technique = "mutual_info_classif"
     technique_short = "mic"
     # technique = "mutual_info_regression"
     # technique_short = "mir"
-    print(f"\nFeature Selection\nTechnique: {technique}\nFeat num: {k_top_feats}\n")
-    X_train_best, X_test_best = feat_selection(X_train,y_train,X_test,k_best=k_top_feats,technique=technique_short)
+    # print(f"\nFeature Selection\nTechnique: {technique}\nFeat num: {k_top_feats}\n")
+    # X_train_best, X_test_best = feat_selection(X_train_best,y_train,X_test_best,k_best=k_top_feats,technique=technique_short)
     
 
     return X_train_best, X_test_best, y_train, y_test
@@ -130,8 +130,6 @@ def data_proc_train_test_parts(train_parts, test_parts, embeddings, ):
     labels_test_df, le = funs_d.alpha_to_numerical(data_df_test,"polarity")
     labels_test_df = labels_test_df["polarity"].values
 
-    # data_df_train.pop("polarity")
-    # data_df_test.pop("polarity")
     data_df_train.drop('polarity', axis=1, inplace=True)
     data_df_test.drop('polarity', axis=1, inplace=True)
     
@@ -139,21 +137,22 @@ def data_proc_train_test_parts(train_parts, test_parts, embeddings, ):
     data_df_train, pos_list_train = add_feats(data_df_train, pos_list = pos_list)
     data_df_test, pos_list = add_feats(data_df_test, pos_list=pos_list_train)
     
-    data_df_train = choose_feats(data_df_train)
-    data_df_test = choose_feats(data_df_test)
+    X_train_best = choose_feats(data_df_train)
+    X_test_best = choose_feats(data_df_test)
     
     # all_data_df.pop("polarity")
     
     # feature selection method and test
-    k_top_feats = int(data_df_train.shape[1]/2)
+    k_top_feats = int(4*data_df_train.shape[1]/5)
     technique = "mutual_info_classif"
     technique_short = "mic"
     # technique = "mutual_info_regression"
     # technique_short = "mir"
-    print(f"\nFeature Selection\nTechnique: {technique}\nFeat num: {k_top_feats}\n")
-    X_train_best, X_test_best = feat_selection(data_df_train,labels_train_df,data_df_test,k_best=k_top_feats,technique=technique_short)
+    # print(f"\nFeature Selection\nTechnique: {technique}\nFeat num: {k_top_feats}\n")
+    # X_train_best, X_test_best = feat_selection(X_train_best,labels_train_df,X_test_best,k_best=k_top_feats,technique=technique_short)
 
     return X_train_best, X_test_best, labels_train_df, labels_test_df   
+
 
 def evaluate_model_precision(model, X, y):
     cv = RepeatedStratifiedKFold(n_splits=10, n_repeats=4, random_state=1)
@@ -170,16 +169,20 @@ def evaluate_model_f1(model, X, y):
     scores = cross_val_score(model, X, y, scoring='f1_macro', cv=cv, n_jobs=-1, error_score='raise')
     return scores
 
+
 # Data Scaling
 SVM_scaler = MinMaxScaler()
 RF_scaler = StandardScaler()
 LR_scaler = StandardScaler()
 
+
 class_algo_dict={
+    "LR": make_pipeline(LR_scaler, LogisticRegression(C=0.1, multi_class='multinomial', solver="lbfgs", max_iter=1000 )),
     "SVM": make_pipeline(SVM_scaler, SVC(C=1.0, kernel="poly", degree=3, probability=True)),
-    "RF": make_pipeline(RF_scaler, RandomForestClassifier(n_estimators=100, criterion="entropy")),
-    "LR": make_pipeline(LR_scaler, LogisticRegression(C=0.1, multi_class='multinomial', solver="lbfgs", max_iter=1000 ))
+    "RF": make_pipeline(RF_scaler, RandomForestClassifier(n_estimators=100, criterion="entropy"))
+    
 }
+
 
 def train(X_train, y_train, classificationAlgo="RF" ):
     print(classificationAlgo)
@@ -190,6 +193,7 @@ def train(X_train, y_train, classificationAlgo="RF" ):
     # print(classification_report(y_train, predictions, target_names=["Negative", "Neutral", "Positive"], zero_division=1))
 
     return model
+
 
 def feat_selection(X_train,y,X_test,k_best=100, technique="mir"):
     if technique=="mic":
@@ -216,8 +220,9 @@ def save_model(model, filepath):
 if __name__=="__main__":
     parts_to_use = [ i+1 for i in range(10)]
     algo_name="RF"
-    # text embeddings: Word2Vec, sBERT, FastText, CountVect, TfidfVect
+    # text embeddings: Word2Vec, sBERT
     embeddings = "sBERT"
+    # embeddings = "Word2Vec"
 
     if len(sys.argv)<2:
         print(f"\nERROR: did not specify number of parts and classification algorithm !\ndefault parts: 1-10\ndefault algorithm: RF\n\nUsage: python test.py < algorithm name >  < parts to use >\n")
