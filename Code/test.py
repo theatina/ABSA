@@ -51,6 +51,7 @@ def test(X,y,model):
     predictions = model.predict(X)
     c_rep = classification_report(y, predictions, target_names=["Negative", "Neutral", "Positive"], zero_division=1, output_dict=False)
     c_rep_dict = classification_report(y, predictions, target_names=["Negative", "Neutral", "Positive"], zero_division=1, output_dict=True)
+    print("\nTest Scores:\n\n"+c_rep)
     return predictions, c_rep, c_rep_dict
 
 
@@ -116,8 +117,12 @@ if __name__=="__main__":
         part_to_use = [int(sys.argv[2])]
         model_name = sys.argv[1]
 
+    train_df_path = f"..{os.sep}Data{os.sep}DataFrames{os.sep}opinions_polarity_allFeats.csv"
+    train_df = pd.read_csv(train_df_path)
 
-    X_test, y_test = data_proc(part_to_use, embeddings)
+    # total POS tag features : dim=13
+    pos_list = [ c for c in train_df.columns[-13:] ]
+    X_test, y_test = data_proc(part_to_use, embeddings, pos_list = pos_list)
     model = test_steps(X_test, y_test, model_name, part_to_use[0])
 
     plot_roc(model,X_test,y_test,model_name,part_to_use[0],"Test")

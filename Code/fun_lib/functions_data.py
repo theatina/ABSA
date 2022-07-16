@@ -1,6 +1,7 @@
 from cProfile import label
 import os
 import sys
+from turtle import end_fill
 from unicodedata import category
 import pandas as pd
 import re
@@ -245,7 +246,7 @@ def data_df(dataset_path, file_name, save_dir, embeddings="sBERT"):
 
     data_df=embs_feats_df(data_df,embeddings_df(data_df, embeddings=embeddings))
 
-    data_df_filepath = os.path.join(save_dir,f"opinions_polarity_{file_name}.csv")
+    data_df_filepath = os.path.join(save_dir,f"opinions_polarity_POS.csv")
     data_df.to_csv(data_df_filepath, index=False, header=True)
 
     return data_df
@@ -257,24 +258,45 @@ def add_feat_tokens(df):
     return df
 
 
-
-def add_feat_POS(df):
+def add_feat_POS(df, pos_list=[]):
     tok_list = list(df["tokens"].values)
     pos_text_list = []
     for toks in tok_list:
         pos = pos_tag(toks)
         pos_text_list.append(pos)
 
-    df["POS"] = pos_text_list
+    # df["POS"] = pos_text_list
 
     tag_freq_list = []
+    tag_freq = []
     for tag_list in pos_text_list:
         tag_fd = nltk.FreqDist( tag for (word, tag) in tag_list)
-        tag_freq_list.append(tag_fd.most_common(5))
+        tag_freq.append(tag_fd.items())
+        tag_freq_list.append(tag_fd.most_common(1))
     
-    df["POS_mostCommon"] = tag_freq_list
+    # df["POS_mostCommon"] = tag_freq_list
 
-    return df
+    if len(pos_list)==0:
+        all_pos = [ item[0] for row in tag_freq_list for item in row ]
+        pos_enc_dict = {}
+
+        le = LabelEncoder()
+        le.fit_transform(all_pos)
+        for cat,num in zip( all_pos, le.fit_transform(all_pos)):
+            pos_enc_dict[cat]=num
+        
+        pos_list = le.classes_.tolist()
+    
+    column_pos_count = { k:[ 0 for i in range( df.shape[0] ) ] for k in pos_list  }
+
+    for row, pos_tag_list in enumerate(tag_freq):
+        for pos,freq in pos_tag_list:
+            if pos in column_pos_count:
+                column_pos_count[pos][row]=freq
+    
+    pos_fq_df = pd.DataFrame( column_pos_count )
+
+    return df.join(pos_fq_df), pos_list
 
 
 def add_feat_freq(df):
@@ -288,6 +310,7 @@ def add_feat_freq(df):
     df["freq"] = f_text_list
 
     return df
+
 
 def add_feat_sentiment(df):
     t_list = list(df["text"].values)
