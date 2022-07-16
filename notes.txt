@@ -26,7 +26,7 @@ ________________________________________________________________________________
 9. named entities
 10. tfidf
 11. 2 experiments with sBERT / Word2Vec -> καλύτερα pretrained vectors γιατί δεν υπάρχει πολλή πληροφορία στα sentences των δειγμάτων!!
-
+12. probably feat selection does not optimize the models because all the features seem important for the task!!
 
 
 
