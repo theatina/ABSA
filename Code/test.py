@@ -14,6 +14,7 @@ from fun_lib import functions_data as funs_d
 from fun_lib import functions_training as funs_t
 import train as tr
 
+# load the xml parts  
 def load_df_parts(embeddings, part_list=[i for i in range(10)]):
     save_dir = "..\Data\DataFrames"
     all_data_df = pd.DataFrame()
@@ -24,7 +25,7 @@ def load_df_parts(embeddings, part_list=[i for i in range(10)]):
 
     return all_data_df
 
-
+# data processing
 def data_proc(part_to_use, embeddings, pos_list=[]):
     
     df = load_df_parts(embeddings, part_to_use)
@@ -36,19 +37,16 @@ def data_proc(part_to_use, embeddings, pos_list=[]):
     X_best = tr.choose_feats(data_df)
     
     # feature selection method and test
-    k_top_feats = int(4*df.shape[1]/5)
-    technique = "mutual_info_classif"
-    technique_short = "mic"
-    # technique = "mutual_info_regression"
-    # technique_short = "mir"
+    # k_top_feats = int(X_best.shape[1]/2)
+    # technique = "mutual_info_classif"
+    # technique_short = "mic"
+
     # print(f"\nFeature Selection\nTechnique: {technique}\nFeat num: {k_top_feats}\n")
     # X_best, unused = tr.feat_selection(data_df,labels_df,data_df,k_best=k_top_feats,technique=technique_short)
     
-
-
     return X_best, labels_df
 
-
+# log scores and information for the report
 def logging(py_file, model_name, part, predictions, c_rep):
     logfile_path = f"..{os.sep}Logfiles{os.sep}{py_file}_{model_name}_test_{part}.txt"
     with open(logfile_path, "w", encoding="utf-8") as logger:
@@ -58,6 +56,7 @@ def logging(py_file, model_name, part, predictions, c_rep):
     
     return logfile_path
 
+# making predictions and generating the classification score report - main test function used by the other .py files
 def test(X,y,model):
     predictions = model.predict(X)
     c_rep = classification_report(y, predictions, target_names=["Negative", "Neutral", "Positive"], zero_division=1, output_dict=False)
@@ -71,20 +70,14 @@ def test_steps(X_test, y_test, model_name, part):
     model = pickle.load(open(model_path, 'rb'))
 
     predictions, c_rep, c_rep_dict = test(X_test, y_test, model)
-    
     print(c_rep)
 
     logging("test", model_name, part, predictions, c_rep)
-
     return model
 
 def plot_roc(model,X,y,model_name,part=1,mode="Test", embeddings="sBERT"):
     plt.clf()
-    # generate 2 class dataset
-    # X, y = make_classification(n_samples=1000, n_classes=3, n_features=20, n_informative=3, random_state=42)
 
-    # split into train/test sets
-    # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4, random_state=42)
     pred = model.predict(X)
     pred_prob = model.predict_proba(X)
 
@@ -132,8 +125,8 @@ if __name__=="__main__":
     train_df_path = f"..{os.sep}Data{os.sep}DataFrames{os.sep}opinions_polarity_allFeats.csv"
     train_df = pd.read_csv(train_df_path)
 
-    # total POS tag features : dim=13
-    pos_list = [ c for c in train_df.columns[-13:] ]
+    # no POS features were used here, after deciding it is a non-important feature
+    pos_list=[]
     X_test, y_test = data_proc(part_to_use, embeddings, pos_list = pos_list)
     model = test_steps(X_test, y_test, model_name, part_to_use[0])
 

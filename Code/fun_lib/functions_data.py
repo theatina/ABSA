@@ -176,17 +176,17 @@ def get_sEmbeddings_dict(dict_path):
     return mydict
 
 def data_df(dataset_path, file_name, save_dir, embeddings="sBERT"):
-
+    # get embeddings dictionary
     wv_dict = get_sEmbeddings_dict(f"EmbeddingDicts{os.sep}{embeddings}_sEmbeddings_dict.csv")
 
     with open(dataset_path, "r", encoding="utf-8") as xml_reader:
         data = xml_reader.read()
 
+    # read xml reviews so as to create the dataframe with all the opinion aspects
     data_xml = BeautifulSoup(data, "xml")
     
     data_rev = data_xml.find('Reviews')
     data_reviews = data_rev.find_all('Review')
-    
 
     rev_sentences = []
     rev_dict = {}
@@ -196,6 +196,7 @@ def data_df(dataset_path, file_name, save_dir, embeddings="sBERT"):
     all_ops = []
 
     r_ids = re.findall(r'rid="(.*?)"', str(data_reviews))
+    # for each review, each sentence of the reviews and each opinion of the respective sentence, create a dataframe row with the information for this aspect - ids, text, tokenized text, aspect entity, aspect attribute, target, target offset, polarity
     for rev in data_reviews:
         r_id = re.findall(r'rid="(.*?)"', str(rev))[0]
         rev_dict[r_id]={}
@@ -231,16 +232,8 @@ def data_df(dataset_path, file_name, save_dir, embeddings="sBERT"):
             sent_opinions.append(sent_op_list)
             rev_dict[r_id]=temp_s_dict
         
-        
 
-
-    # for o_list, s_list in zip(sent_opinions,rev_sentences):
-    #     for o in o_list:
-    #         if str(o) !="[]" and not all(x in str(o) for x in [ "category=", "target=", "polarity=", "from=", "to=" ]):
-    #             print(re.findall(r'id="(.*?)"', str(s_list)))
-
-
-
+    # create the dataframe   
     col_names = [ "polarity", "review_id", "sentence_id", "text", f"sentence_{embeddings}_emb", "op_category", "op_entity", "op_attribute", "op_target", "op_OTE_offset", "tokens" ]
     data_df = pd.DataFrame(all_ops, columns=col_names)
 
@@ -248,16 +241,18 @@ def data_df(dataset_path, file_name, save_dir, embeddings="sBERT"):
 
     data_df_filepath = os.path.join(save_dir,f"opinions_polarity_POS.csv")
     data_df.to_csv(data_df_filepath, index=False, header=True)
-
     return data_df
 
 
+# add multiple kind of features
+
+# tokenized text
 def add_feat_tokens(df):
     tok_list = [ tok_text(t) for t in df["text"] ]
     df["tokens"] = tok_list
     return df
 
-
+# Part-of-speech tags
 def add_feat_POS(df, pos_list=[]):
     tok_list = list(df["tokens"].values)
     pos_text_list = []
@@ -265,16 +260,12 @@ def add_feat_POS(df, pos_list=[]):
         pos = pos_tag(toks)
         pos_text_list.append(pos)
 
-    # df["POS"] = pos_text_list
-
     tag_freq_list = []
     tag_freq = []
     for tag_list in pos_text_list:
         tag_fd = nltk.FreqDist( tag for (word, tag) in tag_list)
         tag_freq.append(tag_fd.items())
         tag_freq_list.append(tag_fd.most_common(1))
-    
-    # df["POS_mostCommon"] = tag_freq_list
 
     if len(pos_list)==0:
         all_pos = [ item[0] for row in tag_freq_list for item in row ]
@@ -295,7 +286,6 @@ def add_feat_POS(df, pos_list=[]):
                 column_pos_count[pos][row]=freq
     
     pos_fq_df = pd.DataFrame( column_pos_count )
-
     return df.join(pos_fq_df), pos_list
 
 
@@ -308,7 +298,6 @@ def add_feat_freq(df):
         f_text_list.append(freq_dict)
     
     df["freq"] = f_text_list
-
     return df
 
 
@@ -322,8 +311,8 @@ def add_feat_sentiment(df):
         s_text_list.append(sentim_dict)
     
     df["sentiment"] = s_text_list
-
     return df
+
 
 def extract_ngrams(tokens, num):
     n_grams = ngrams(tokens, num)
@@ -338,13 +327,10 @@ def add_feat_ngrams(df,n):
         ng_text_list.append(ngram_list)
     
     df[f"ngrams_{n}"] = ng_text_list
-
     return df
 
 def add_feat_stemming(df):
-
     ps = PorterStemmer()
-    
     stemmed_text=[]
     for toks in df["tokens"].values:
         stemmed_words=[]
@@ -370,17 +356,16 @@ def add_feat_lemmas(df):
         lem_text_list.append(l_words) 
 
     df["lem_text"]=lem_text_list
-
     return df
 
         
 def add_feat_CountVect(df):
-    #tokenizer to remove unwanted elements from out data like symbols and numbers
+    #tokenizer to remove unwanted elements the data like symbols and numbers
     cv = CountVectorizer(lowercase=True,stop_words='english', ngram_range = (1,3), tokenizer = TweetTokenizer().tokenize)
     text_cv = cv.fit_transform( df["text"])
     df["countVect"] = [ row.toarray() for row in text_cv]
-
     return df
+
 
 def add_feat_TfidfVect(df):
     tf = TfidfVectorizer(lowercase=True,stop_words='english', ngram_range = (1,3), tokenizer = TweetTokenizer().tokenize)
@@ -390,13 +375,11 @@ def add_feat_TfidfVect(df):
     return df
 
 
+# encode categorical features/target variable
 def alpha_to_numerical(df,feat_name):
     le = LabelEncoder()
     label_list = le.fit_transform(df[feat_name]).tolist()
-    # enc_labels = pd.Series(label_list)
     df.pop(feat_name)
-    # df.drop(feat_name, axis = 1, inplace = True)
-    # df[feat_name] = enc_labels
     df.insert( loc=len(df.columns), column=feat_name, value=label_list)
     return df, le
 
@@ -414,10 +397,7 @@ if __name__=="__main__":
         df = data_df(f"..\Data\Parts\part{i+1}.xml", f"part{i+1}", save_dir, embeddings=embeddings)
         all_data_df = pd.concat( [ all_data_df , df])
 
-    # sentence_enbeddings(embeddings=embeddings)
-
-    # embeddings_df(all_data_df,embeddings)
-    # add features
+    # adding features
     
     # add_feat_freq(all_data_df)
     # add_feat_sentiment(all_data_df)
@@ -429,25 +409,16 @@ if __name__=="__main__":
     # add_feat_CountVect(all_data_df)
     # add_feat_TfidfVect(all_data_df)
 
-    # all_data_df,le = alpha_to_numerical(all_data_df,"polarity")
-    # all_data_df = add_feat_POS(all_data_df)
-
-    # print(all_data_df["countVect"])
-    # print(all_data_df["tfidfVect"])
- 
-    # labels = all_data_df["polarity"].values
-    # all_data_df.pop("polarity")
-
     # file_name = f"allFeats"
-    # data_df_filepath = os.path.join(save_dir,f"opinions_polarity_{file_name}.csv")
+    # data_df_filepath = os.path.join(save_dir,f"opinions_polarity.csv")
     # all_data_df.to_csv(data_df_filepath, index=False, header=True)
 
-    # dataset visualization
-
+    # dataset stats
     print(len(all_data_df[ all_data_df["polarity"]=="negative" ]))
     print(len(all_data_df[ all_data_df["polarity"]=="neutral" ]))
     print(len(all_data_df[ all_data_df["polarity"]=="positive" ]))
 
     lens = [ len(tok_text(t)) for t in all_data_df["text"].values ]
+    print(np.mean(lens))
     print(f"\nMax Len: {max(lens)} tokens | Min Len: {min(lens)} tokens")
 

@@ -4,12 +4,11 @@ from requests import head
 import sys
 import re
 import pandas as pd
-
 from bs4 import BeautifulSoup
 
 from fun_lib import functions_data as funs_d
 
-
+# initial .xml dataset file
 dataset_path = ".."+os.sep+"Data"+os.sep+"ABSA16_Restaurants_Train_SB1_v2.xml"
 if len(sys.argv)>1:
     dataset_path = sys.argv[1]
@@ -23,9 +22,9 @@ if not os.path.exists(dataset_path):
 with open(dataset_path, "r", encoding="utf-8") as xml_reader:
     data = xml_reader.read()
 
+# read and split .xml file in 10 parts
 data_xml = BeautifulSoup(data, "xml")
 data_reviews = data_xml.find_all('Review')
-
 
 for i in range(10):
 

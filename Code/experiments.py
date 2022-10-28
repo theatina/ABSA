@@ -40,26 +40,25 @@ logfile_path = f"..{os.sep}Logfiles{os.sep}experiments_{algo_name}_{k_folds}Fold
 with open(logfile_path, "w", encoding="utf-8") as logger:
     logger.write(f"Model: {algo_name}\n")
     for i in range(k_folds):
+        # get the respective .xml parts for training/test
         part_no=i+1
         parts_test = [part_no]
         parts_train = [ i+1 for i in range(k_folds) ]
         parts_train.remove(part_no)
         logger.write(f"\nXML Parts\nTraining: {parts_train}\nTest: {part_no}\n\n")
         
+        # process the xml files to create the dataframes as explained in the report
         X_train, X_test, y_train, y_test = tr.data_proc_train_test_parts(parts_train, parts_test, embeddings)
+        
+        # Training
+        # train the model defined in the command line (or using the default algorithm)
         model = tr.train(X_train, y_train, algo_name )
 
-        # Scores
-        # model_scores_precision = tr.evaluate_model_precision(model, X_test, y_test)
-        # tot_p.append(model_scores_precision)
-        # model_scores_recall = tr.evaluate_model_recall(model, X_test, y_test)
-        # tot_r.append(model_scores_recall)
-        # model_scores_f1 = tr.evaluate_model_f1(model, X_test, y_test)
-        # tot_r.append(model_scores_recall)
-
-        # print(f"\nFold {part_no}\n\n> Score\nPrecision: {model_scores_precision:.3f} | Recall: {model_scores_recall:.3f} | F1: {model_scores_f1:.3f}")
-
+        # Evaluation
+        # Test - make the predictions and generate the classification report
         predictions, c_rep, c_rep_dict = tst.test(X_test, y_test, model)
+
+        # get the metrics to store them in the logfiles
         acc_score = accuracy_score(y_test,predictions)
         p_score = c_rep_dict["macro avg"]["precision"]
         r_score = c_rep_dict["macro avg"]["recall"]
@@ -74,6 +73,8 @@ with open(logfile_path, "w", encoding="utf-8") as logger:
     
         logger.write( c_rep )
         logger.write("\n\n")
+
+        # create the ROC curve and store it
         tst.plot_roc(model,X_test,y_test,algo_name,part_no,mode="Experiments",embeddings=embeddings)
 
     score_str = f"\n\n> Average Scores\nAccuracy: {sum(acc_list)/k_folds:.3f} | Precision: {sum(precision_list)/k_folds:.3f} | Recall: {sum(recall_list)/k_folds:.3f} | F1: {sum(f1_list)/k_folds:.3f}\n\n"
@@ -81,10 +82,3 @@ with open(logfile_path, "w", encoding="utf-8") as logger:
 
     logger.write(score_str)
 
-
-
-# __________________________________________________________________________________________________________________________________________
-# -TODO-
-# more scores/ score table/ class scores etc
-# plot scores over the folds?! 
-# ROC Curve ?!
